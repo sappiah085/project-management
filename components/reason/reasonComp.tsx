@@ -1,4 +1,5 @@
 import ReasonCard from "./card/card";
+
 const reasons: {
   label: string;
   icon: string;
@@ -25,8 +26,8 @@ const reasons: {
 export default function Reason() {
   return (
     <>
-      {reasons.map((el) => (
-        <ReasonCard {...el} key={el.label} />
+      {reasons.map((el, id) => (
+        <ReasonCard {...el} id={id} key={el.label} />
       ))}
     </>
   );

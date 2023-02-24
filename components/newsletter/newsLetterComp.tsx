@@ -8,7 +8,7 @@ export default function NewsLetter({
   return (
     <>
       {news.map((el, id) => (
-        <NewsLetterCard {...el} key={id} />
+        <NewsLetterCard {...el} id={id} key={id} />
       ))}
     </>
   );

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 import Button from "../button/button";
 import kid1 from "../../public/assets/kid1.png";
 import kid2 from "../../public/assets/kid2.png";
@@ -12,9 +13,18 @@ export default function Enroll() {
   return (
     <div className="w-full flex flex-col gap-10 lg:grid grid-cols-12 lg:grid-rows-3 py-24 px-8 lg:gap-0">
       <span className="lg:row-start-2 lg:row-span-4 lg:col-start-5 lg:col-span-4 flex flex-col items-center gap-10">
-        <h1 className="lg:text-3xl text-2xl font-bold font-sora">
+        <motion.h1
+          initial={{ opacity: 0, y: -140 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            stiffness: 100,
+            type: "spring",
+          }}
+          className="lg:text-3xl text-2xl font-bold font-sora"
+        >
           Enroll your ward to join over 3000+ successful students
-        </h1>
+        </motion.h1>
         <Button link="/" label="Enroll your ward now" />
       </span>
       <Image

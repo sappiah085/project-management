@@ -44,43 +44,49 @@ export default function Footer() {
       <span className="flex flex-wrap gap-10 justify-between w-full border-b-[0.1rem] pb-7">
         <div className="flex flex-col">
           {" "}
-          <h1 className="text-xl italic font-bold  ">
+          <h1 className="text-xl italic font-bold  font-gilroy">
             deutscheinternationalschool
           </h1>
-          <h4 className="font-gilroy">Building Future Leaders.</h4>
+          <h4 className="font-gilroy text-zinc-200">
+            Building Future Leaders.
+          </h4>
         </div>
         <div className="flex-col flex gap-3">
-          <h1 className="text-xl  font-medium  ">Quick Links</h1>
+          <h1 className="text-xl  font-medium font-gilroy ">Quick Links</h1>
           <ul className="flex flex-col flex-wrap md:h-28 gap-x-4">
             {linksFooter.map(({ label, url }) => (
               <li key={label}>
-                <Link href={url}>{label}</Link>
+                <Link className="font-gilroy text-zinc-200" href={url}>
+                  {label}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="flex-col flex gap-3">
-          <h1 className="text-xl  font-medium  ">Contact Information</h1>
+          <h1 className="text-xl  font-medium  font-gilroy">
+            Contact Information
+          </h1>
           <Link
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 font-gilroy text-zinc-200"
             href="mailto:sappiah5689@gmail.com"
           >
             <AiOutlineMail /> deutscheinternationalschool@gmail.com
           </Link>
           <Link
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 font-gilroy text-zinc-200"
             href={"telephone:+36208090899"}
           >
             <BsTelephone /> +233245679328
           </Link>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 font-gilroy text-zinc-200">
             <HiOutlineLocationMarker />
             Asamankese, near the Pentecost church
           </span>
           <span className="flex items-center gap-2 relative text-black">
             <input
               type="text"
-              className="w-full py-2 px-4 placeholder:text-black outline-black rounded-3xl border-none"
+              className="w-full py-2 px-4 placeholder:text-black outline-black rounded-3xl border-none font-gilroy text-black"
               id="sub"
               placeholder="Subscribe to newsletter"
             />
@@ -91,17 +97,23 @@ export default function Footer() {
         </div>
       </span>
       <span className="flex flex-wrap gap-6 justify-between p-7">
-        <span>
+        <span className="font-gilroy text-zinc-200">
           © 2023{" "}
-          <h1 className="text-xl italic font-bold  inline ">
+          <h1 className="text-xl italic font-bold  inline text-white ">
             deutscheinternationalschool
           </h1>
           . All rights reserved. Designed and developed by Degriti
         </span>
-        <span>
-          <Link href={"/"}>Privacy Policy</Link>
-          <Link href={"/"}>Terms and Conditions</Link>
-          <Link href={"/"}>Cookies Policies</Link>
+        <span className="flex flex-wrap gap-4">
+          <Link className="font-gilroy text-zinc-200" href={"/"}>
+            Privacy Policy
+          </Link>
+          <Link className="font-gilroy text-zinc-200" href={"/"}>
+            Terms and Conditions
+          </Link>
+          <Link className="font-gilroy text-zinc-200" href={"/"}>
+            Cookies Policies
+          </Link>
         </span>
       </span>
     </footer>

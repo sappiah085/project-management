@@ -10,7 +10,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      gilroy: ["Gilroy-Medium", " sans - serif"],
+      gilroy: ["Gilroy-Medium", "sans-serif"],
       sora: ["Sora", "sans-serif"],
     },
     extend: {},
