@@ -45,7 +45,7 @@ export default function NavBar({ handleMenu }: { handleMenu: () => void }) {
         />
         <label
           htmlFor="open"
-          className="inline-block fixed h-12 w-12 bg-white rounded-3xl drop-shadow-lg z-[100] top-5 right-10 after:absolute after:h-[.2rem] after:w-2/3 after:bg-zinc-400 after:top-[40%] after:left-[50%] after:translate-x-[-50%] after:rounded-md before:rounded-md before:absolute before:h-[.2rem] before:w-2/3 before:bg-zinc-400  before:top-[60%] before:left-[50%] before:translate-x-[-50%] peer-checked:after:rotate-[45deg] peer-checked:before:rotate-[-45deg] peer-checked:before:top-6 peer-checked:after:top-6 before:transition-all after:transition-all lg:hidden"
+          className="inline-block fixed h-12 w-12 bg-white rounded-3xl drop-shadow-lg z-[100] top-5 right-4 after:absolute after:h-[.2rem] after:w-2/3 after:bg-zinc-400 after:top-[40%] after:left-[50%] after:translate-x-[-50%] after:rounded-md before:rounded-md before:absolute before:h-[.2rem] before:w-2/3 before:bg-zinc-400  before:top-[60%] before:left-[50%] before:translate-x-[-50%] peer-checked:after:rotate-[45deg] peer-checked:before:rotate-[-45deg] peer-checked:before:top-6 peer-checked:after:top-6 before:transition-all after:transition-all lg:hidden"
         ></label>
         <ul className="flex flex-col gap-4 w-full transition-[transform] items-center justify-center translate-x-[100%] p-0 opacity-0 overflow-hidden h-0 peer-checked:h-screen peer-checked:translate-x-0 peer-checked:p-9 duration-250 peer-checked:opacity-100 absolute top-0 bg-white left-0 lg:flex-row lg:translate-x-0 lg:h-full lg:opacity-100 lg:static lg:w-max lg:items-center lg:px-2">
           {links.map(({ label, path }) => (
