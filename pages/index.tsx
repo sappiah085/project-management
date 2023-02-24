@@ -1,11 +1,37 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import Head from "next/head";
+import NavBar from "@/components/nav/nav";
+import Hero from "@/components/hero/hero";
+import ItemParentComp from "@/components/itemComp/itemParentComp";
+import { useState } from "react";
+import Reason from "@/components/reason/reasonComp";
+import NewsLetter from "@/components/newsletter/newsLetterComp";
+import first from "../public/assets/kid.png";
+import mid from "../public/assets/mid.png";
+import last from "../public/assets/last.png";
+import Testimony from "@/components/testimony/testimony";
+import Numbers from "@/components/numbers/numbers";
+import Enroll from "@/components/enroll/enroll";
+import Footer from "@/components/footer/footer";
+const news: { message: string; image: any; link: string }[] = [
+  {
+    message: " New school fees release ahead of next academic year",
+    link: "/",
+    image: first,
+  },
+  {
+    message: "New school fees release ahead of next academic year",
+    link: "/",
+    image: mid,
+  },
+  {
+    message: "New school fees release ahead of next academic year",
+    link: "/",
+    image: last,
+  },
+];
 
 export default function Home() {
+  const [menu, setMenu] = useState(false);
   return (
     <>
       <Head>
@@ -14,110 +40,45 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+      <main
+        className={`w-full  flex flex-col overflow-x-hidden justify-start  ${
+          menu ? "h-screen" : "min-h-screen"
+        }`}
+      >
+        {/* navigation */}
+        <NavBar handleMenu={() => setMenu((pre) => !pre)} />
+        {/* hero section */}
+        <Hero />
+        {/* Reasons to enroll */}
+        <ItemParentComp
+          label="Enroll your ward now"
+          title={" Why your ward should be here"}
+          subtitle={
+            "  Providing an exceptional educational experience fo success"
+          }
+        >
+          <Reason />
+        </ItemParentComp>
+        {/* newsletters */}
+        <ItemParentComp
+          back="bg-[#F4F6F8]"
+          label="Read More"
+          title={"Latest Newsletter"}
+          subtitle={
+            "Stay up-to-date with the latest news and events at our school"
+          }
+        >
+          <NewsLetter news={news} />
+        </ItemParentComp>
+        {/* testimony */}
+        <Testimony />
+        {/* numbers */}
+        <Numbers />
+        {/* Enroll */}
+        <Enroll />
+        {/* footer */}
+        <Footer />
       </main>
     </>
-  )
+  );
 }
