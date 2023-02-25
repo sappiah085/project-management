@@ -65,7 +65,6 @@ export default function Hero() {
     <div className="h-screen w-full relative flex flex-col justify-center overflow-hidden ">
       {land.map(({ image, label }, id) => {
         const trans = (id - index) * width;
-        console.log(trans);
         return (
           <span
             ref={container}
