@@ -5,6 +5,7 @@ import img3 from "../../public/assets/3.png";
 import img4 from "../../public/assets/4.png";
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const land: { label: string; image: any }[] = [
   {
@@ -72,11 +73,20 @@ export default function Hero() {
             style={{ transform: `translateX(${trans}px)` }}
             className={` h-full w-full absolute pt-9 left-0  top-0 flex flex-col gap-2 justify-center after:absolute after:w-full after:h-full after:bg-black/25 after:top-0 after:left-0  after:-z-20 transition-all`}
           >
-            <img
-              className="w-full h-full -z-20 object-cover absolute top-0 left-0 lg:pt-20"
-              src={image.src}
-              alt="school boy"
-            />
+            {(id < 2 ||
+              id === 3) ? (
+                <Image
+                  className="w-full h-full -z-20 object-cover absolute top-0 left-0 lg:pt-20"
+                  src={image}
+                  alt={label}
+                />
+              ) : (
+                <img
+                  src={image.src}
+                  className="w-full h-full -z-20 object-cover absolute top-0 left-0 lg:pt-20"
+                  alt={label}
+                />
+              )}
             <motion.h1
               initial={{ opacity: 0, x: "-50px" }}
               whileInView={{ opacity: 1, x: 0, transition: { duration: 1 } }}
