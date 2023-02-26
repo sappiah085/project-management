@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import hero from "../../public/assets/image.png";
 import img2 from "../../public/assets/2.png";
-import img3 from "../../public/assets/3.png";
+import img3 from "../../public/assets/3.webp";
 import img4 from "../../public/assets/4.png";
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
@@ -73,8 +73,8 @@ export default function Hero() {
             style={{ transform: `translateX(${trans}px)` }}
             className={` h-full w-full absolute pt-9 left-0  top-0 flex flex-col gap-2 justify-center after:absolute after:w-full after:h-full after:bg-black/25 after:top-0 after:left-0  after:-z-20 transition-all`}
           >
-            <img
-              src={image.src}
+            <Image
+              src={image}
               className="w-full h-full -z-20 object-cover absolute top-0 left-0 lg:pt-20"
               alt={label}
             />
