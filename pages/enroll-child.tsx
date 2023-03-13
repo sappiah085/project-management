@@ -1,12 +1,11 @@
 import Head from "next/head";
-import Image from "next/image";
 import enroll from "../public/assets/enroll.webp";
 import { BsArrowRight, BsDownload } from "react-icons/bs";
 import EnrollCard from "@/components/enrollCard/enrollCard";
 import ImageIllus from "@/components/image/image";
 const steps = [
   {
-    url: "/",
+    url: "/admission",
     title: "Online Application",
     message:
       "Applying for admission has never been easier! Our online application process is fast, simple, and secure. With just a few clicks, you can complete your application and submit it to us in minutes. No more waiting in long lines or filling out endless forms by hand.",

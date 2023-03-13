@@ -21,7 +21,7 @@ const links: link[] = [
   },
   {
     label: "Admission",
-    path: "/enroll-child",
+    path: "/admission",
   },
   {
     label: "Newsletter",
