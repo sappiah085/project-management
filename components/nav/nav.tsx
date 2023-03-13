@@ -21,7 +21,7 @@ const links: link[] = [
   },
   {
     label: "Admission",
-    path: "/admission",
+    path: "/enroll-child",
   },
   {
     label: "Newsletter",
@@ -54,7 +54,7 @@ export default function NavBar({ handleMenu }: { handleMenu: () => void }) {
                 className={`text-xl inline-block relative p-2 link-style ${
                   pathname === path ? "black" : " text-zinc-500"
                 }`}
-                href="/"
+                href={path}
               >
                 {label}
               </Link>

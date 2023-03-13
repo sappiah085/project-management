@@ -25,7 +25,7 @@ export default function Enroll() {
         >
           Enroll your ward to join over 3000+ successful students
         </motion.h1>
-        <Button link="/" label="Enroll your ward now" />
+        <Button link="/enroll-child" label="Enroll your ward now" />
       </span>
       <Image
         className="w-[110px]  aspect-square hidden lg:inline-block rounded-[50%] row-start-2 col-start-2 row-span-2 col-span-2 -mt-9 hover:scale-125 transition-all"

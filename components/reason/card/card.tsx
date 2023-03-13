@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 export default function ReasonCard({
-  icon,
+  children,
   label,
   message,
   id,
 }: {
-  icon: string;
+  children: any;
   label: string;
   message: string;
   id: number;
@@ -27,10 +27,10 @@ export default function ReasonCard({
       whileInView="visible"
       initial="hidden"
       custom={id}
-      className="w-full min-w-sm max-w-md flex-shrink-0 p-2 flex flex-col gap-4"
+      className="w-full min-w-sm max-w-sm flex-shrink-0 p-2 flex flex-col gap-4"
     >
       <span className="text-5xl bg-[#F2F6FE] h-20 w-20 p-5  flex justify-center items-center rounded-md">
-        {icon}
+        {children}
       </span>
       <h3 className="text-2xl font-bold font-sora">{label}</h3>
       <p className="text-zinc-500 font-gilroy">{message}</p>

@@ -5,6 +5,7 @@ type props = {
   title: string;
   label: string;
   subtitle: string;
+  link?: string;
   back?: string;
 };
 export default function ItemParentComp({
@@ -13,6 +14,7 @@ export default function ItemParentComp({
   subtitle,
   label,
   back,
+  link = "/",
 }: props) {
   return (
     <div
@@ -25,7 +27,7 @@ export default function ItemParentComp({
       <div className="flex justify-center items-center flex-wrap gap-5 mb-8 w-full parent-element">
         {children}
       </div>
-      <Button link="/" label={label} />
+      <Button link={link} label={label} />
     </div>
   );
 }

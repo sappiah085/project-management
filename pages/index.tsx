@@ -52,6 +52,7 @@ export default function Home() {
         {/* Reasons to enroll */}
         <ItemParentComp
           label="Enroll your ward now"
+          link={"/enroll-child"}
           title={" Why your ward should be here"}
           subtitle={
             "  Providing an exceptional educational experience fo success"

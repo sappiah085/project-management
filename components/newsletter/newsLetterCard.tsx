@@ -29,7 +29,7 @@ export default function NewsLetterCard({
       whileInView="visible"
       initial="hidden"
       custom={id}
-      className="w-full h-[300px]   min-w-sm max-w-md flex-shrink-0  hover-element"
+      className="w-full h-[300px]   min-w-sm max-w-sm flex-shrink-0  hover-element"
     >
       <Link
         href={link}
