@@ -3,8 +3,8 @@ import { BsArrowRight } from "react-icons/bs";
 type prop = {
   link: string;
   label: string;
-  children: any;
-  className: string;
+  children?: any;
+  className?: string;
 };
 export default function Button({
   link,
