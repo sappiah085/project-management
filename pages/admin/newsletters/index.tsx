@@ -1,6 +1,6 @@
+import Button from "@/components/button/button";
 import LayoutAdmin from "@/components/layoutAdmin/layoutAdmin";
 import NewsCard from "@/components/newsCard/newsCard";
-import SubmitBtn from "@/components/submitButton/submitButton";
 import TabLike from "@/components/tabLike/tabLike";
 import Head from "next/head";
 import { useState } from "react";
@@ -25,11 +25,14 @@ export default function NewsLetter() {
               />
             ))}
           </div>
-          <span className="fixed z-30 hidden lg:block top-28 right-4">
-            <SubmitBtn
+          <span className="fixed z-30  top-28 right-4">
+            <Button
+              link="/admin/newsletters/post-letter"
               label="New Post"
               className="bg-[#582be8] after:bg-[#582be8]"
-            />
+            >
+              <span></span>
+            </Button>
           </span>
           <div className="w-full flex flex-col gap-4">
             {[1, 2, 3, 4, 5, 6, 7].map((news) => (

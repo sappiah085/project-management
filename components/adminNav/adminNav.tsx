@@ -2,13 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import user from "../../public/assets/woman.webp";
 import { FiMenu } from "react-icons/fi";
-export default function AdminNav({ handleOpen }: any) {
+export default function AdminNav({ handleOpen, showToggle = true }: any) {
   return (
-    <header className="w-full bg-white z-30 flex items-center p-3 px-5 sticky top-0">
+    <header className="w-full bg-white z-[41] flex items-center p-3 px-5 sticky top-0">
       <nav className="flex items-center justify-end w-full  ">
-        <button onClick={handleOpen} className="lg:hidden">
-          <FiMenu />
-        </button>
+        {showToggle && (
+          <button onClick={handleOpen} className="lg:hidden">
+            <FiMenu />
+          </button>
+        )}
         <Link
           className="flex items-center gap-2 border-[1px] border-black  p-2 px-3 rounded-3xl mx-auto"
           href={"/"}

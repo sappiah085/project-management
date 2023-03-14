@@ -6,7 +6,7 @@ export default function LayoutAdmin({ children }: any) {
   const [openNav, setOpenNav] = useState(false);
 
   return (
-    <main className="flex font-gilroy flex-col w-full">
+    <main className="flex  font-gilroy flex-col w-full">
       <AdminNav handleOpen={() => setOpenNav((pre) => !pre)} />
       <div className="w-full flex justify-between items-start">
         <SideBarAdmin
