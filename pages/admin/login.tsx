@@ -13,7 +13,7 @@ export default function AdminLogin() {
       <main className="font-gilroy w-full min-h-screen flex justify-center items-center">
         <form
           className="w-full px-3 py-5 max-w-md flex flex-col gap-3"
-          action="/admin/admin-dashboard/?admission=all" //TODO:Admin link
+          action="/admin/admissions" //TODO:Admin link
         >
           <div className="flex flex-col items-center w-full gap-1">
             <Image

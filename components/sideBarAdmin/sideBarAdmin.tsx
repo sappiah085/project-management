@@ -8,7 +8,10 @@ export default function SideBarAdmin({
   openNav: boolean;
   handleOpen: () => void;
 }) {
-  const router = useRouter(); //TODO:change active
+  const { pathname } = useRouter(); //TODO:change active
+  const checkLocation = (label: string) =>
+    pathname.split("/")[2] === label.toLowerCase();
+
   return (
     <>
       <div
@@ -26,8 +29,8 @@ export default function SideBarAdmin({
           <Link
             onClick={handleOpen}
             style={{
-              backgroundColor: id === 0 ? "#E6DFFC" : "transparent",
-              color: id === 0 ? "#4220AE" : "#333342",
+              backgroundColor: checkLocation(label) ? "#E6DFFC" : "transparent",
+              color: checkLocation(label) ? "#4220AE" : "#333342",
             }}
             className="flex w-full items-center gap-4 px-5 py-2 rounded-3xl"
             key={label}

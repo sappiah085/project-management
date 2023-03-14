@@ -1,6 +1,6 @@
 export const links = [
   {
-    url: "/admin/admin-dashboard/?admission=all",
+    url: "/admin/admissions",
     label: "Admissions",
     icon: (
       <svg
@@ -32,7 +32,7 @@ export const links = [
     ),
   },
   {
-    url: "/admin/admin-dashboard",
+    url: "/admin/newsletters",
     label: "Newsletters",
     icon: (
       <svg

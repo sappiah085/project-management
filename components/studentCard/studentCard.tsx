@@ -11,7 +11,7 @@ export default function StudentCard({ name }: { name: string }) {
       <Button
         className="bg-white !text-black border-[1.6px] !rounded-xl text-center hover:after:bg-black/20 !text-sm md:text-lg"
         label="View Application"
-        link="/admin/student-info?id=3445"
+        link="/admin/admissions/student-info?id=3445"
       >
         <span></span>
       </Button>
