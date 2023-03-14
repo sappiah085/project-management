@@ -76,7 +76,7 @@ export default function PostLetter() {
             <h1 className="font-bold text-center lg:text-xl">
               Newsletter is Ready for publication
             </h1>
-            <p className="text-sm lg:text-lg text-center">
+            <p className="text-sm  text-center">
               Hi Admin, The newsletter is all set and ready to be published. But
               before you hit that publish button, don{"'"}t forget to select who
               gets to see it. That way, we can make sure that the right people
