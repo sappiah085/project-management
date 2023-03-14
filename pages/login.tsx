@@ -4,6 +4,7 @@ import woman from "../public/assets/woman.webp";
 import Input from "@/components/input/input";
 import SubmitBtn from "@/components/submitButton/submitButton";
 import Link from "next/link";
+import LogoName from "@/components/logo_name/logoName";
 export default function LogIn() {
   return (
     <>
@@ -12,9 +13,7 @@ export default function LogIn() {
       </Head>
       <main className="flex flex-wrap-reverse gap-6 p-5 font-gilroy min-h-screen items-center max-w-7xl mx-auto w-full justify-around">
         <section className="flex h-full w-full max-w-sm flex-col gap-9">
-          <h1 className="text-xl italic font-bold z-10">
-            deutscheinternationalschool
-          </h1>
+          <LogoName />
           <form className="flex flex-col gap-3 w-full" action="">
             <h2 className="font-semibold text-xl">Welcome Back</h2>
             <h3>Akwaaba! that’s our way of welcoming you back.</h3>

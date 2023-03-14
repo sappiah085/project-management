@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FiSend } from "react-icons/fi";
+import LogoName from "../logo_name/logoName";
 const linksFooter: { label: string; url: string }[] = [
   {
     label: "Home",
@@ -37,13 +38,11 @@ const linksFooter: { label: string; url: string }[] = [
 ];
 export default function Footer() {
   return (
-    <footer className="w-full bg-black flex flex-col p-8 md:px-16  text-white">
+    <footer className="w-full bg-black flex flex-col p-8 md:px-16  text-white font-gilroy">
       <span className="flex flex-wrap gap-10 justify-between w-full border-b-[0.1rem] pb-7">
         <div className="flex flex-col">
           {" "}
-          <h1 className="text-xl italic font-bold  font-gilroy">
-            deutscheinternationalschool
-          </h1>
+          <LogoName />
           <h4 className="font-gilroy text-zinc-200">
             Building Future Leaders.
           </h4>
@@ -196,11 +195,8 @@ export default function Footer() {
       </span>
       <span className="flex flex-wrap gap-6 justify-between p-7">
         <span className="font-gilroy text-zinc-200">
-          © 2023{" "}
-          <h1 className="text-xl italic font-bold  inline text-white ">
-            deutscheinternationalschool
-          </h1>
-          . All rights reserved. Designed and developed by Degriti
+          © 2023 <LogoName />. All rights reserved. Designed and developed by
+          Degriti
         </span>
         <span className="flex flex-wrap gap-4">
           <Link className="font-gilroy text-zinc-200" href={"/"}>

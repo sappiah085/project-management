@@ -6,6 +6,7 @@ export default function Input({
   placeholder,
   name,
   className = "",
+  ...el
 }: any) {
   const [change, setChange] = useState(false);
   function handleClick(e: SyntheticEvent) {
@@ -19,6 +20,7 @@ export default function Input({
       </label>
       <span className="w-full items-center relative flex">
         <input
+        {...el}
           className={
             "outline-none w-full border-[1px] rounded-md border-zinc-300 p-2 bg-zinc-200/20 invalid:border-red-300 " +
             className

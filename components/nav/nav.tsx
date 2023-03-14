@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
+import LogoName from "../logo_name/logoName";
 
 type link = {
   label: string;
@@ -34,9 +35,7 @@ export default function NavBar({ handleMenu }: { handleMenu: () => void }) {
   return (
     <header className="lg:fixed w-full z-10 flex flex-col justify-center">
       <nav className="h-full w-full flex flex-col gap-4 justify-center font-gilroy p-6  bg-white lg:flex-row lg:items-center lg:justify-between">
-        <h1 className="text-xl italic font-bold z-10">
-          deutscheinternationalschool
-        </h1>
+        <LogoName />
         <input
           type="checkbox"
           onChange={handleMenu}
