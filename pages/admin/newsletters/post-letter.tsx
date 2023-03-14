@@ -59,7 +59,7 @@ export default function PostLetter() {
             transform: PopUp ? "scale(1)" : "scale(0)",
             width: PopUp ? "100%" : "0",
           }}
-          className="absolute px-8 top-0 left-0 bg-black/10 z-50 h-screen w-full transition-[transform] ease-out duration-200 overflow-hidden  flex justify-center items-center"
+          className="absolute px-3 top-0 left-0 bg-black/10 z-50 h-screen w-full transition-[transform] ease-out duration-200 overflow-hidden  flex justify-center items-center"
         >
           <div className="bg-white lg:p-7 p-2 py-8 max-w-md rounded-[50px] flex flex-col gap-2 items-center relative">
             <button
@@ -69,7 +69,7 @@ export default function PostLetter() {
               <GrClose />
             </button>
             <Image
-              className="h-[90px] object-contain"
+              className="h-[60px] object-contain"
               src={image}
               alt="news letter"
             />
