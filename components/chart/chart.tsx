@@ -1,15 +1,6 @@
-/* Chart.js */
-import CanvasJSReact from "../../public/canvasjs-3/canvasjs.react";
+import CanvasJSReact from "./canvasjs.react";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
-function Chart({
-  dataPoints,
-  typeChart,
-  title,
-}: {
-  dataPoints: { label: any; y: any };
-  typeChart: string;
-  title: any;
-}) {
+function Chart({ dataPoints, typeChart, title }: any) {
   const options = {
     title: {
       text: title,
@@ -36,4 +27,4 @@ function Chart({
   );
 }
 
-module.exports = Chart;
+export default Chart;

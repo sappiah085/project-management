@@ -1,12 +1,9 @@
 import LayoutAdmin from "@/components/layoutAdmin/layoutAdmin";
 import dynamic from "next/dynamic";
-const Chart = dynamic(
-  () => import("../../components/chart/chart"),
-  {
-    loading: () => <p>Loading...</p>,
-    ssr: false,
-  }
-);
+const Chart = dynamic(() => import("../../components/chart/chart"), {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
 export default function Analytics() {
   const months = [
     "Month",
