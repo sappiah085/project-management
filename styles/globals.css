@@ -9,6 +9,23 @@ html,
 body {
   box-sizing: border-box;
 }
+table {
+  display: flex;
+  width: 100%;
+
+  flex-direction: column;
+}
+tr {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+  padding: 0.8em 0.5em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+tr:first-of-type {
+  border-radius: 12px 12px 0 0;
+  background-color: #eeeafd;
+}
 
 @media (hover) {
   .link-style::after {

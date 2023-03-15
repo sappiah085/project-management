@@ -2,10 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import user from "../../public/assets/woman.webp";
 import { FiMenu } from "react-icons/fi";
+import Notification from "../notification/notification";
+import { useState } from "react";
 export default function AdminNav({ handleOpen, showToggle = true }: any) {
+  const [openNotification, setOpenNotification] = useState(false);
   return (
-    <header className="w-full bg-white z-[41] flex items-center p-3 px-5 sticky top-0">
-      <nav className="flex items-center justify-end w-full  ">
+    <header className="w-full bg-white z-[100] flex items-center p-3 px-5 sticky top-0">
+      <nav className="flex items-center relative justify-end w-full  ">
         {showToggle && (
           <button onClick={handleOpen} className="lg:hidden">
             <FiMenu />
@@ -41,7 +44,10 @@ export default function AdminNav({ handleOpen, showToggle = true }: any) {
         </Link>
         <div className="flex gap-4 items-center ">
           {" "}
-          <button className="bg-zinc-300/10 h-[40px] w-[40px] flex justify-center items-center rounded-full">
+          <button
+            onClick={() => setOpenNotification((pre) => !pre)}
+            className="bg-zinc-300/10 h-[40px] w-[40px] flex justify-center items-center rounded-full"
+          >
             <svg
               width="19"
               height="23"
@@ -57,6 +63,7 @@ export default function AdminNav({ handleOpen, showToggle = true }: any) {
               />
             </svg>
           </button>
+          {openNotification && <Notification />}
           <button className="h-[40px] w-[40px] ">
             <Image
               className="w-full h-full rounded-full object-cover"

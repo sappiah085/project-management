@@ -52,7 +52,7 @@ export const links = [
     ),
   },
   {
-    url: "/admin/admin-dashboard",
+    url: "/admin/subscribers",
     label: "Subscribers",
     icon: (
       <svg
@@ -72,7 +72,7 @@ export const links = [
     ),
   },
   {
-    url: "/admin/admin-dashboard",
+    url: "/admin/analytics",
     label: "Analytics",
     icon: (
       <svg
