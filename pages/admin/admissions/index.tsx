@@ -43,7 +43,7 @@ export default function AdminDashboard() {
               />
             ))}
           </div>
-          <div className="flex items-center gap-4 sticky top-16 z-30 bg-white py-1">
+          <div className="flex items-center  gap-4 sticky top-16 z-30 bg-white py-1">
             <SelectInput months={months} />
             <span className="flex items-center relative">
               <span className="absolute top-[50%] -translate-y-[50%] left-3 inline-block">

@@ -6,12 +6,13 @@ export default function SelectInput({
   label,
   labelOrient = "flex-col",
   inputClass = "",
+  hide = "",
 }: any) {
   const [values, setValues] = useState({ month: months[0], openMenu: false });
   return (
-    <div className={"relative flex items-center gap-2 " + labelOrient}>
+    <div className={"relative   flex items-start gap-1 " + labelOrient}>
       {label && (
-        <label className="font-medium hidden lg:flex" htmlFor={label}>
+        <label className={"font-medium " + hide} htmlFor={label}>
           {label}
         </label>
       )}

@@ -43,9 +43,10 @@ export default function DataTable({
 
         <SelectInput
           inputClass="!rounded-3xl  !w-[70px] text-center"
-          labelOrient="flex-row text-sm"
+          labelOrient="flex-row text-sm items-center !gap-2 justify-end lg:justify-start"
           months={[10, 344, 56]}
           label="Show entries"
+          // hide="hidden lg:flex"
         />
       </div>
       <table ref={tableRef}>
