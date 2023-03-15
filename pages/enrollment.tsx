@@ -6,7 +6,7 @@ import PreviousSchool from "@/components/previousSchool/previousSchool";
 import SubmitBtn from "@/components/submitButton/submitButton";
 import { useState } from "react";
 export default function Enrollment() {
-  const [active, setActive] = useState(4);
+  const [active, setActive] = useState(0);
   const [PopUp, setPopUp] = useState(false);
   const [completed, setCompleted] = useState<number[]>([]);
   function handleActive(index: number) {

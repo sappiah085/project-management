@@ -12,7 +12,7 @@ export default function EnrollmentNav({ handleOpen, showToggle = true }: any) {
             <FiMenu />
           </button>
         )}
-        <span className="flex items-center gap-2    p-2 px-3 rounded-3xl mx-auto">
+        <span className="lg:flex items-center gap-2    p-2 px-3 rounded-3xl hidden  mx-auto">
           <LogoName />
         </span>
         <div className="flex gap-4 items-center ">
