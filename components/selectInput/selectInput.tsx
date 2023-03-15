@@ -10,7 +10,7 @@ export default function SelectInput({
 }: any) {
   const [values, setValues] = useState({ month: months[0], openMenu: false });
   return (
-    <div className={"relative   flex items-start gap-1 " + labelOrient}>
+    <div className={"relative z-[6]  flex items-start gap-1 " + labelOrient}>
       {label && (
         <label className={"font-medium " + hide} htmlFor={label}>
           {label}

@@ -14,7 +14,7 @@ export default function Admission() {
       <main className="flex font-gilroy flex-wrap-reverse gap-6 p-5  min-h-screen items-center max-w-7xl mx-auto w-full justify-around">
         <section className="flex h-full w-full max-w-sm flex-col gap-9">
           <LogoName />
-          <form className="flex flex-col gap-3 w-full" action="">
+          <form className="flex flex-col gap-3 w-full" action="/enrollment">
             <h2 className="font-semibold text-xl">
               Sign Up To Enroll Your Ward
             </h2>

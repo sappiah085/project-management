@@ -5,7 +5,7 @@ export default function InformationParent({ parent }: { parent: string }) {
   return (
     <>
       {" "}
-      <h2 className="font-semibold sticky text-sm lg:text-lg top-16 z-10 bg-white py-1">
+      <h2 className="font-semibold sticky text-sm lg:text-lg top-16 z-20 bg-white  py-1">
         {parent} Information
       </h2>
       <div className="w-full  mb-6 pt-9 grid md:grid-cols-2 gap-5">
