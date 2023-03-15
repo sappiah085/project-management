@@ -11,7 +11,7 @@ export default function SelectInput({
   return (
     <div className={"relative flex items-center gap-2 " + labelOrient}>
       {label && (
-        <label className="font-medium" htmlFor={label}>
+        <label className="font-medium hidden lg:flex" htmlFor={label}>
           {label}
         </label>
       )}

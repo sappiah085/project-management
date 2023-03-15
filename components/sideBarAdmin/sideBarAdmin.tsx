@@ -23,7 +23,7 @@ export default function SideBarAdmin({
           width: openNav ? "210px" : "0px",
           padding: openNav ? "6rem 0.75rem" : "0px",
         }}
-        className="flex lg:!px-3 flex-col h-screen gap-3 fixed top-0 lg:!pt-24 bg-white transition-all duration-300 overflow-hidden  z-40 lg:!w-[210px]"
+        className="flex lg:!px-3 flex-col h-screen gap-3 fixed top-0 lg:!pt-24 bg-white transition-all duration-300 overflow-hidden  z-50 lg:!w-[210px]"
       >
         {links.slice(0, 4).map(({ url, label, icon }, id) => (
           <Link

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function ImageIllus({ image, message, name }: any) {
   return (
-    <div className="w-full max-w-lg  h-[70vh] relative flex flex-col justify-end top-0 left-0 after:h-full after:absolute after:w-full after:bg-gradient-to-b  after:from-transparent after:via-transparent after:to-black hover:scale-[1.06] hover:z-[2]  hover:backdrop-blur-lg transition-all hover:outline hover:outline-4 hover:outline-offset-8 outline-black rounded-3xl overflow-hidden">
+    <div className="w-full hidden md:flex  max-w-lg  h-[70vh] relative  flex-col justify-end top-0 left-0 after:h-full after:absolute after:w-full after:bg-gradient-to-b  after:from-transparent after:via-transparent after:to-black hover:scale-[1.06] hover:z-[2]  hover:backdrop-blur-lg transition-all hover:outline hover:outline-4 hover:outline-offset-8 outline-black rounded-3xl overflow-hidden">
       <Image
         className="w-full object-cover h-full absolute "
         src={image}

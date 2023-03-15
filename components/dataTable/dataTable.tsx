@@ -12,9 +12,9 @@ export default function DataTable({
   dataArray: any[];
 }) {
   const tableRef = useRef(null);
-  const values = dataArray.map((el, id) => [id, ...Object.values(el)]);
+  const values = dataArray.map((el, id) => [id + 1, ...Object.values(el)]);
   return (
-    <section className="w-full flex-col flex gap-5">
+    <section className="w-full flex-col flex gap-1">
       <DownloadTableExcel
         filename="subscribers table"
         sheet="subscribers"
@@ -28,7 +28,7 @@ export default function DataTable({
           Export Data
         </button>
       </DownloadTableExcel>
-      <div className="w-full z-50 sticky top-16 pb-3 bg-white flex gap-4">
+      <div className="w-full z-40 sticky top-16 pb-3 bg-white flex lg:gap-4 justify-between mb-12 lg:mb-0 lg:justify-start">
         <div className="relative">
           <span className="absolute top-[50%] left-4 translate-y-[-40%]">
             <BsSearch />
@@ -42,8 +42,8 @@ export default function DataTable({
         </div>
 
         <SelectInput
-          inputClass="!rounded-3xl  w-[100px] text-center"
-          labelOrient="flex-row "
+          inputClass="!rounded-3xl  !w-[70px] text-center"
+          labelOrient="flex-row text-sm"
           months={[10, 344, 56]}
           label="Show entries"
         />

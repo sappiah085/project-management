@@ -28,11 +28,16 @@ export default function NotificationCard({
         </svg>
       </span>
       <span>
-        <h2 className="font-bold  bg-white py-1">New Admission🔥🔥</h2>
-        <p className="flex flex-wrap gap-1">
+        <h2 className="font-bold text-sm lg:text-lg bg-white py-1">
+          New Admission🔥🔥
+        </h2>
+        <p className="flex flex-wrap text-sm lg:text-lg gap-1">
           {message.slice(0, readMore ? 999999 : slice)}
           {!readMore && (
-            <button onClick={() => setReadMore(true)} className="text-blue-600">
+            <button
+              onClick={() => setReadMore(true)}
+              className="text-blue-600 text-sm lg:text-lg"
+            >
               Read more
             </button>
           )}

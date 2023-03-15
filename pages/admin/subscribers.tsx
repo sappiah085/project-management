@@ -2,7 +2,7 @@ import DataTable from "@/components/dataTable/dataTable";
 import LayoutAdmin from "@/components/layoutAdmin/layoutAdmin";
 const data = new Array(200).fill({
   email: "same@gmail.com",
-  date: "30th November,2022}",
+  date: "30th November,2022",
 });
 export default function Subscribers() {
   return (

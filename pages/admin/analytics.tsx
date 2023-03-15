@@ -26,10 +26,10 @@ export default function Analytics() {
   }));
   return (
     <LayoutAdmin>
-      <section className="flex w-full flex-col gap-4">
+      <section className="flex w-full px-2 flex-col gap-4">
         <h1 className="font-bold text-xl">Analytics</h1>
         <div className="w-full flex flex-wrap gap-4">
-          <div className="w-full max-w-xl p-5 my-auto border-[1px] rounded-md">
+          <div className="w-full flex justify-center items-center max-w-xl p-5 my-auto border-[1px] rounded-md">
             <Chart
               title={"Visitor analytics"}
               typeChart={"line"}
