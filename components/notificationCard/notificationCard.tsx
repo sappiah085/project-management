@@ -9,7 +9,7 @@ export default function NotificationCard({
 }) {
   const [readMore, setReadMore] = useState(false);
   return (
-    <article className="flex  px-4 border-b-[1px] pb-3 gap-3">
+    <article className="flex  px-4 border-b-[1px] pb-2 mt-2 gap-3">
       <span className="bg-zinc-300/10 h-[40px] w-[40px] flex justify-center flex-shrink-0 items-center rounded-full transition-all">
         {" "}
         <svg
@@ -31,12 +31,12 @@ export default function NotificationCard({
         <h2 className="font-bold text-sm lg:text-lg bg-white py-1">
           New Admission🔥🔥
         </h2>
-        <p className="flex flex-wrap text-sm lg:text-lg gap-1">
+        <p className=" text-sm  lg:text-lg gap-1">
           {message.slice(0, readMore ? 999999 : slice)}
           {!readMore && (
             <button
               onClick={() => setReadMore(true)}
-              className="text-blue-600 text-sm lg:text-lg"
+              className="text-blue-600 inline-block ml-1 text-sm lg:text-lg"
             >
               Read more
             </button>
