@@ -17,6 +17,7 @@ export default function HeroCard({ image, label }: any) {
       className={`h-full w-full absolute pt-9 flex flex-col gap-2 justify-center after:absolute after:w-full after:h-full after:bg-black/25 after:top-0 after:left-0  after:-z-20 top-0 left-0 transition-all`}
     >
       <Image
+        priority
         src={image}
         className="w-full  h-full -z-20 object-cover absolute top-0 left-0 lg:pt-20 img"
         alt={label}
