@@ -8,7 +8,7 @@ export default function Emergency({
   _id,
   handleChangeActive,
 }: {
-  _id: string;
+  _id?: string;
   handleChangeActive?: any;
 }) {
   const [spin, setSpin] = useState(false);

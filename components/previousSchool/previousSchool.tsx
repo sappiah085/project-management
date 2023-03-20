@@ -9,7 +9,7 @@ export default function PreviousSchool({
   _id,
 }: {
   handleChangeActive?: any;
-  _id: string;
+  _id?: string;
 }) {
   const [spin, setSpin] = useState(false);
   const [values, setValues] = useState({

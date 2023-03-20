@@ -12,7 +12,7 @@ export default function InformationParent({
 }: {
   parent: string;
   name: string;
-  _id: string;
+  _id?: string;
   getValue: (arg: any) => void;
 }) {
   const [value, setValue] = useState({

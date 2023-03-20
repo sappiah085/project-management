@@ -1,14 +1,14 @@
 import Emergency from "@/components/emergencyInfo/emergency";
 import EnrollmentLayout from "@/components/enrollmentLayout/enrollmentLayOut";
 import ParentalInfo from "@/components/parentalInfo/parentalInfo";
-import PersonalInfo from "@/components/personalInfo/personalnfo";
+import PersonalInfo, { Student } from "@/components/personalInfo/personalnfo";
 import PreviousSchool from "@/components/previousSchool/previousSchool";
 import { useUser } from "@/components/protected/protect";
 import SubmitBtn from "@/components/submitButton/submitButton";
 import { fetchData } from "@/utils/function";
 import { url } from "@/utils/urls";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function Enrollment() {
   const [active, setActive] = useState(0);
   const [PopUp, setPopUp] = useState(false);
@@ -16,9 +16,11 @@ export default function Enrollment() {
   const [spin, setSpin] = useState(false);
   const [generalState, setGeneralState] = useState({ id: "" });
   const [completed, setCompleted] = useState<number[]>([]);
+
+  //submit form
   async function handleSubmit() {
     setSpin(true);
-    const student = await fetchData(
+    await fetchData(
       `${url.student}/${generalState.id}`,
       JSON.stringify({ unCompleted: false }),
       "PATCH"
@@ -43,6 +45,34 @@ export default function Enrollment() {
     setPopUp((pre) => !pre);
   }
   const data = useUser();
+
+  //query student and set id
+
+  useEffect(() => {
+    const fetcher = async () => {
+      try {
+        const studentInfo = await fetchData(
+          `${url.student}/student-graphql`,
+          JSON.stringify({
+            query: `
+            query {
+            studentUncompleted {
+            _id
+          }
+        }
+        `,
+          })
+        );
+        if (!studentInfo?.data?.studentUncompleted) return;
+        const { _id } = studentInfo?.data?.studentUncompleted;
+        setGeneralState({ id: _id });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetcher();
+  }, []);
+
   if (!data?.user) router.push("/login");
   return (
     <>
@@ -57,6 +87,7 @@ export default function Enrollment() {
           <section className="w-[95%] flex flex-col justify-center px-3 lg:px-6 py-10  max-w-5xl rounded-xl bg-white mx-auto min-h-[85vh]">
             {active === 0 && (
               <PersonalInfo
+               
                 _id={generalState.id}
                 handleChangeActive={handleChangeActive}
                 setId={(val: string) =>

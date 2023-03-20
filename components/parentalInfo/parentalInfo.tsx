@@ -8,7 +8,7 @@ export default function ParentalInfo({
   _id,
   handleChangeActive,
 }: {
-  _id: string;
+  _id?: string;
   handleChangeActive?: any;
 }) {
   const [spin, setSpin] = useState(false);
@@ -39,7 +39,7 @@ export default function ParentalInfo({
         `${url.parent}`,
         JSON.stringify(guardianData)
       );
-      const student = await fetchData(
+      await fetchData(
         `${url.student}/${_id}`,
         JSON.stringify({
           mother: mother.data._id,

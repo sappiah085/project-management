@@ -4,6 +4,14 @@ import SelectInput from "../selectInput/selectInput";
 import SubmitBtn from "../submitButton/submitButton";
 import { dateFormat, fetchData, setInput } from "@/utils/function";
 import { url } from "@/utils/urls";
+export interface Student {
+  surname: string;
+  otherNames: string;
+  DOB: string;
+  class: string;
+  nationality: string;
+  religion: string;
+}
 const levels = [
   "class 2",
   "Class 1",
@@ -53,11 +61,7 @@ export default function PersonalInfo({
       const studentInfo = await fetchData(url.student, newStudent);
       if (setId) setId(studentInfo.data.id);
     } else {
-      const studentInfo = await fetchData(
-        `${url.student}/${_id}`,
-        newStudent,
-        "PATCH"
-      );
+      await fetchData(`${url.student}/${_id}`, newStudent, "PATCH");
     }
     setSpin(false);
     handleChangeActive();
@@ -100,13 +104,12 @@ export default function PersonalInfo({
           DOB: dateFormat(DOB),
           otherNames,
         });
-        if (setId) setId(_id);
       } catch (error) {
         console.log(error);
       }
     };
     fetcher();
-  },[]);
+  }, []);
   return (
     <>
       <h1 className="font-bold  text-xl sticky top-16 z-10 bg-white py-1">
