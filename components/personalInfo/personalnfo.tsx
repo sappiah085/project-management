@@ -106,7 +106,7 @@ export default function PersonalInfo({
       }
     };
     fetcher();
-  }, []);
+  },[]);
   return (
     <>
       <h1 className="font-bold  text-xl sticky top-16 z-10 bg-white py-1">
