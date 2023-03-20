@@ -75,7 +75,7 @@ const Admission: NextPageWithLayout = () => {
             setOpen={() => setOpen((pre) => ({ ...pre, open: !open.open }))}
           />
         )}
-        <section className="flex h-full overflow-x-hidden  w-full max-w-sm flex-col gap-9">
+        <section className="flex h-full px-4 overflow-x-hidden  w-full max-w-sm flex-col gap-9">
           <LogoName />
           <form onSubmit={onSubmit} className="flex flex-col gap-3 w-full ">
             <h2 className="font-semibold text-xl">

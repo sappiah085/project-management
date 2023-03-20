@@ -43,8 +43,7 @@ export default function Enrollment() {
   //popup
   function popupFunc() {
     setPopUp((pre) => !pre);
-    router.reload();
-  }
+}
   const data = useUser();
 
   //query student and set id

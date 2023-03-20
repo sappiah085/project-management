@@ -68,7 +68,7 @@ export default function LogIn() {
               />
             )}
             <LogoName />
-            <form className="flex overflow-x-hidden flex-col gap-3 w-full" onSubmit={onSubmit}>
+            <form className="flex overflow-x-hidden px-2 flex-col gap-3 w-full" onSubmit={onSubmit}>
               <h2 className="font-semibold text-xl">Welcome Back</h2>
               <h3>Akwaaba! that’s our way of welcoming you back.</h3>
               <Input
