@@ -1,3 +1,8 @@
+import { fetchData } from "@/utils/function";
+import { logout } from "../sideBarAdmin/sideBarLinks";
+import { url } from "@/utils/urls";
+import { useRouter } from "next/router";
+
 const steps = [
   "Personal Information",
   "Parental Information",
@@ -19,6 +24,7 @@ export default function EnrollmentSideBar({
   completed: number[];
   handleOpen: () => void;
 }) {
+  const router = useRouter();
   function checkColors(id: number) {
     if (id === active)
       return { active: true, bg: "#582BE8", color: "white", completed: false };
@@ -30,6 +36,10 @@ export default function EnrollmentSideBar({
       color: "black",
       completed: false,
     };
+  }
+  async function signOut() {
+    await fetchData(`${url.user}/logout`, JSON.stringify({ logout: true }));
+    router.push("/");
   }
   return (
     <>
@@ -76,10 +86,13 @@ export default function EnrollmentSideBar({
             </span>
           </button>
         ))}
-        <button className="flex w-full items-center text-[#333342] gap-4 px-5 py-2 rounded-3xl">
+        <button
+          onClick={signOut}
+          className="flex my-auto mx-auto text-xl w-full items-center text-[#333342] gap-4 px-5 py-2 rounded-3xl"
+        >
           {" "}
-          {/* {logout.icon} */}
-          {/* <span>{logout.label}</span> */}
+          {logout.icon}
+          {<span>{logout.label}</span>}
         </button>
       </nav>
     </>

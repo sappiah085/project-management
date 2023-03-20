@@ -2,8 +2,10 @@ import { FiMenu } from "react-icons/fi";
 import Notification from "../notification/notification";
 import { useState } from "react";
 import LogoName from "../logo_name/logoName";
+import { useUser } from "../protected/protect";
 export default function EnrollmentNav({ handleOpen, showToggle = true }: any) {
   const [openNotification, setOpenNotification] = useState(false);
+  const user = useUser();
   return (
     <header className="w-full bg-white z-[100] flex items-center p-3 px-5 sticky top-0">
       <nav className="flex items-center relative justify-end w-full  ">
@@ -38,7 +40,7 @@ export default function EnrollmentNav({ handleOpen, showToggle = true }: any) {
           </button>
           {openNotification && <Notification />}
           <button className="h-[40px] font-bold text-white  rounded-full bg-blue-500 w-[40px] ">
-            NA
+            {user.user?.name.slice(0, 2).toLocaleUpperCase()}
           </button>
         </div>
       </nav>

@@ -12,6 +12,7 @@ import Testimony from "@/components/testimony/testimony";
 import Numbers from "@/components/numbers/numbers";
 import Enroll from "@/components/enroll/enroll";
 import Footer from "@/components/footer/footer";
+import type { NextPageWithLayout } from "./_app";
 const news: { message: string; image: any; link: string }[] = [
   {
     message: " New school fees release ahead of next academic year",
@@ -30,7 +31,7 @@ const news: { message: string; image: any; link: string }[] = [
   },
 ];
 
-export default function Home() {
+const Home: NextPageWithLayout = () => {
   const [menu, setMenu] = useState(false);
   return (
     <>
@@ -82,4 +83,10 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+Home.getLayout = function getLayout(page) {
+  return page;
+};
+
+export default Home;

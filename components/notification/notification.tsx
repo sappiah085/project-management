@@ -16,7 +16,7 @@ export default function Notification() {
           />
         ))}
       </div>
-      <div className="flex px-5 text-sm pt-5 lg:text-lg border-t-[1px] bg-white -mt-1 items-center justify-between pb-2">
+      <div className="flex px-5 text-sm pt-5 lg:text-lg border-t-[1px] bg-white  items-center justify-between pb-2">
         <Link href={"/admin/notifications"}>See all notifications</Link>
         <button className="text-zinc-600">Mark all as read</button>
       </div>

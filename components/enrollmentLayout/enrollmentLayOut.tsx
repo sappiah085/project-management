@@ -21,7 +21,7 @@ export default function EnrollmentLayout({
         height: PopUp ? "100vh" : "inherit",
         overflow: PopUp ? "hidden" : "inherit",
       }}
-      className={"flex relative font-gilroy flex-col w-full "}
+      className={"flex  relative font-gilroy flex-col w-full "}
     >
       <EnrollmentNav handleOpen={() => setOpenNav((pre) => !pre)} />
       <div className="w-full flex justify-between items-start">
