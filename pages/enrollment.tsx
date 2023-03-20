@@ -43,6 +43,7 @@ export default function Enrollment() {
   //popup
   function popupFunc() {
     setPopUp((pre) => !pre);
+    router.reload();
   }
   const data = useUser();
 
@@ -87,7 +88,6 @@ export default function Enrollment() {
           <section className="w-[95%] flex flex-col justify-center px-3 lg:px-6 py-10  max-w-5xl rounded-xl bg-white mx-auto min-h-[85vh]">
             {active === 0 && (
               <PersonalInfo
-               
                 _id={generalState.id}
                 handleChangeActive={handleChangeActive}
                 setId={(val: string) =>
