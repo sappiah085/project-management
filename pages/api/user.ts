@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== "POST") return;
-  const data = await fetch(`${url.user}/logout`, {
+  const data = await fetch(`${url.user}/sign-in`, {
     method: "post",
     credentials: "include",
     headers: {
@@ -15,6 +15,7 @@ export default async function handler(
     body: JSON.stringify(req.body),
   });
   const info = await data.json();
+  console.log(info);
   const cookie = serialize("session", info?.cookie, {
     expires: new Date(Date.now() + 3600000 * 1 - 1000),
     httpOnly: true,

@@ -23,7 +23,9 @@ type userObj = {
   role: string;
 };
 export const getSession = async (con: context) => {
+  console.log(con.req.headers.cookie);
   const cookies = con.req.headers.cookie || "";
+
   const data = await fetch(`${url.user}/get-user`, {
     method: "POST",
     credentials: "include",
