@@ -7,12 +7,14 @@ import { url } from "@/utils/urls";
 export default function InformationParent({
   parent,
   name,
+  cookie = "",
   getValue,
   _id,
 }: {
   parent: string;
   name: string;
   _id?: string;
+  cookie?: string;
   getValue: (arg: any) => void;
 }) {
   const [value, setValue] = useState({
@@ -49,7 +51,11 @@ export default function InformationParent({
       }
       `,
       });
-      const data = await fetchData(`${url.student}/student-graphql`, body);
+      const data = await fetchData(
+        `${url.student}/student-graphql`,
+        body,
+        cookie
+      );
       if (!data?.data?.student) return;
       setValue(data.data.student[name]);
     };

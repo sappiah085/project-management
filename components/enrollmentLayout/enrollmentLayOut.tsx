@@ -12,6 +12,7 @@ export default function EnrollmentLayout({
   PopUp,
   popupFunc,
   handleActive,
+  cookie,
 }: any) {
   const [openNav, setOpenNav] = useState(false);
 
@@ -27,6 +28,7 @@ export default function EnrollmentLayout({
       <div className="w-full flex justify-between items-start">
         <EnrollmentSideBar
           completed={completed}
+          cookie={cookie}
           active={active}
           handleActive={handleActive}
           handleOpen={() => setOpenNav((pre) => !pre)}

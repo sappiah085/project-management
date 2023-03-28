@@ -7,11 +7,11 @@ import { url } from "@/utils/urls";
 export default function Emergency({
   _id,
   handleChangeActive,
-  cookie,
+  cookie = "",
 }: {
   _id?: string;
   handleChangeActive?: any;
-  cookie: string;
+  cookie?: string;
 }) {
   const [spin, setSpin] = useState(false);
   const [values, setValues] = useState({

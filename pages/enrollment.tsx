@@ -57,6 +57,7 @@ export default function Enrollment({
     <>
       {data.user && (
         <EnrollmentLayout
+          cookie={cookie}
           PopUp={PopUp}
           popupFunc={popupFunc}
           completed={completed}

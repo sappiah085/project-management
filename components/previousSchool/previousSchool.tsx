@@ -7,11 +7,11 @@ import { url } from "@/utils/urls";
 export default function PreviousSchool({
   handleChangeActive,
   _id,
-  cookie,
+  cookie = "",
 }: {
   handleChangeActive?: any;
   _id?: string;
-  cookie: string;
+  cookie?: string;
 }) {
   const [spin, setSpin] = useState(false);
   const [values, setValues] = useState({

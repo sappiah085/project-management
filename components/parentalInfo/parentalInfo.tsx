@@ -7,10 +7,10 @@ import { url } from "@/utils/urls";
 export default function ParentalInfo({
   _id,
   handleChangeActive,
-  cookie,
+  cookie = "",
 }: {
   _id?: string;
-  cookie: string;
+  cookie?: string;
   handleChangeActive?: any;
 }) {
   const [spin, setSpin] = useState(false);
@@ -85,6 +85,7 @@ export default function ParentalInfo({
           Personal Information
         </h1>
         <InformationParent
+          cookie={cookie}
           _id={_id}
           name="father"
           getValue={(value: any) => getValues("father", value)}
@@ -92,11 +93,13 @@ export default function ParentalInfo({
         />
         <InformationParent
           _id={_id}
+          cookie={cookie}
           name="mother"
           getValue={(value: any) => getValues("mother", value)}
           parent="Mother's"
         />
         <InformationParent
+          cookie={cookie}
           _id={_id}
           name="guardian"
           getValue={(value: any) => getValues("guardian", value)}

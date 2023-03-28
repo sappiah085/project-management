@@ -27,12 +27,12 @@ export default function PersonalInfo({
   setId,
   _id,
   handleChangeActive,
-  cookie,
+  cookie = "",
 }: {
   setId?: (arg: string) => void;
   handleChangeActive?: any;
   _id?: string;
-  cookie: string;
+  cookie?: string;
 }) {
   const [value, setValues] = useState({
     surname: "",

@@ -17,11 +17,13 @@ export default function EnrollmentSideBar({
   handleOpen,
   handleActive,
   completed,
+  cookie,
 }: {
   handleActive: (arg: number) => void;
   openNav: boolean;
   active: number;
   completed: number[];
+  cookie: string;
   handleOpen: () => void;
 }) {
   const router = useRouter();
@@ -38,7 +40,7 @@ export default function EnrollmentSideBar({
     };
   }
   async function signOut() {
-    await fetchData(`/api/logout`, JSON.stringify({ logout: true }));
+    await fetchData(`/api/logout`, JSON.stringify({ logout: true }), cookie);
     router.push("/");
   }
   return (
