@@ -7,9 +7,11 @@ import { url } from "@/utils/urls";
 export default function PreviousSchool({
   handleChangeActive,
   _id,
+  cookie,
 }: {
   handleChangeActive?: any;
   _id?: string;
+  cookie: string;
 }) {
   const [spin, setSpin] = useState(false);
   const [values, setValues] = useState({
@@ -26,6 +28,7 @@ export default function PreviousSchool({
     await fetchData(
       `${url.student}/${_id}`,
       JSON.stringify({ previousSchool: values }),
+      cookie,
       "PATCH"
     );
     setSpin(false);
@@ -50,7 +53,11 @@ export default function PreviousSchool({
       }
       `,
       });
-      const data = await fetchData(`${url.student}/student-graphql`, body);
+      const data = await fetchData(
+        `${url.student}/student-graphql`,
+        body,
+        cookie
+      );
       if (!data?.data?.student?.previousSchool) return;
       const { dateLeft, ...dataSchool } = data?.data?.student?.previousSchool;
       setValues({ dateLeft: dateFormat(dateLeft), ...dataSchool });

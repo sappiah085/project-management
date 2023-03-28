@@ -5,14 +5,20 @@ import PersonalInfo from "@/components/personalInfo/personalnfo";
 import PreviousSchool from "@/components/previousSchool/previousSchool";
 import { useUser } from "@/components/protected/protect";
 import SubmitBtn from "@/components/submitButton/submitButton";
-import { fetchData } from "@/utils/function";
-import { getSession, url } from "@/utils/urls";
-import { useEffect, useState } from "react";
-export default function Enrollment() {
+import { fetchData, getSession } from "@/utils/function";
+import { url } from "@/utils/urls";
+import { useState } from "react";
+export default function Enrollment({
+  id,
+  cookie,
+}: {
+  id: string;
+  cookie: string;
+}) {
   const [active, setActive] = useState(0);
   const [PopUp, setPopUp] = useState(false);
   const [spin, setSpin] = useState(false);
-  const [generalState, setGeneralState] = useState({ id: "" });
+  const [generalState, setGeneralState] = useState({ id });
   const [completed, setCompleted] = useState<number[]>([]);
 
   //submit form
@@ -21,6 +27,7 @@ export default function Enrollment() {
     await fetchData(
       `${url.student}/${generalState.id}`,
       JSON.stringify({ unCompleted: false }),
+      cookie,
       "PATCH"
     );
     setSpin(false);
@@ -46,30 +53,6 @@ export default function Enrollment() {
 
   //query student and set id
 
-  useEffect(() => {
-    const fetcher = async () => {
-      try {
-        const studentInfo = await fetchData(
-          `${url.student}/student-graphql`,
-          JSON.stringify({
-            query: `
-            query {
-            studentUncompleted {
-            _id
-          }
-        }
-        `,
-          })
-        );
-        if (!studentInfo?.data?.studentUncompleted) return;
-        const { _id } = studentInfo?.data?.studentUncompleted;
-        setGeneralState({ id: _id });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetcher();
-  }, []);
   return (
     <>
       {data.user && (
@@ -83,6 +66,7 @@ export default function Enrollment() {
           <section className="w-[95%] flex flex-col justify-center px-3 lg:px-6 py-10  max-w-5xl rounded-xl bg-white mx-auto min-h-[85vh]">
             {active === 0 && (
               <PersonalInfo
+                cookie={cookie}
                 _id={generalState.id}
                 handleChangeActive={handleChangeActive}
                 setId={(val: string) =>
@@ -92,18 +76,21 @@ export default function Enrollment() {
             )}
             {active === 1 && (
               <ParentalInfo
+                cookie={cookie}
                 handleChangeActive={handleChangeActive}
                 _id={generalState.id}
               />
             )}
             {active === 2 && (
               <PreviousSchool
+                cookie={cookie}
                 _id={generalState.id}
                 handleChangeActive={handleChangeActive}
               />
             )}
             {active === 3 && (
               <Emergency
+                cookie={cookie}
                 handleChangeActive={handleChangeActive}
                 _id={generalState.id}
               />
@@ -114,10 +101,10 @@ export default function Enrollment() {
                 <h2 className="mb-8">
                   Please confirm that the information provided are correct.
                 </h2>
-                <PersonalInfo />
-                <ParentalInfo _id={generalState.id} />
-                <PreviousSchool _id={generalState.id} />
-                <Emergency _id={generalState.id} />
+                <PersonalInfo cookie={cookie} />
+                <ParentalInfo cookie={cookie} _id={generalState.id} />
+                <PreviousSchool cookie={cookie} _id={generalState.id} />
+                <Emergency cookie={cookie} _id={generalState.id} />
               </>
             )}
             <div className="my-auto w-full gap-8 flex items-center">
@@ -138,6 +125,19 @@ export default function Enrollment() {
 }
 export async function getServerSideProps(context: any) {
   const user = await getSession(context);
+  const studentInfo = await fetchData(
+    `${url.student}/student-graphql`,
+    JSON.stringify({
+      query: `
+            query {
+            studentUncompleted {
+            _id
+          }
+        }
+        `,
+    }),
+    context.req.headers.cookie
+  );
   if (!user)
     return {
       redirect: {
@@ -145,9 +145,17 @@ export async function getServerSideProps(context: any) {
         destination: "/login",
       },
     };
+
+  let id = null;
+  if (studentInfo?.data?.studentUncompleted) {
+    const { _id } = studentInfo?.data?.studentUncompleted;
+    id = _id;
+  }
   return {
     props: {
       user: user,
+      id: id,
+      cookie: context.req.headers.cookie,
     },
   };
 }

@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { isEmail, setInput, validateEmailInput } from "@/utils/function";
 import Alert from "@/components/alert/alert";
-import { getSession } from "@/utils/urls";
+import { getSession } from "@/utils/function";
 export default function LogIn() {
   const { user } = useUser();
   const router = useRouter();

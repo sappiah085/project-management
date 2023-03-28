@@ -39,7 +39,7 @@ const Admission: NextPageWithLayout = () => {
       return;
     }
     setSpin(true);
-    const data = await fetch(`${url.user}/sign-up`, {
+    const data = await fetch(`/api/sign-up`, {
       method: "POST",
       credentials: "include",
       headers: {

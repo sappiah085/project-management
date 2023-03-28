@@ -7,8 +7,10 @@ import { url } from "@/utils/urls";
 export default function ParentalInfo({
   _id,
   handleChangeActive,
+  cookie,
 }: {
   _id?: string;
+  cookie: string;
   handleChangeActive?: any;
 }) {
   const [spin, setSpin] = useState(false);
@@ -29,15 +31,18 @@ export default function ParentalInfo({
     if (!f) {
       const father = await fetchData(
         `${url.parent}`,
-        JSON.stringify(fatherData)
+        JSON.stringify(fatherData),
+        cookie
       );
       const mother = await fetchData(
         `${url.parent}`,
-        JSON.stringify(motherData)
+        JSON.stringify(motherData),
+        cookie
       );
       const guardian = await fetchData(
         `${url.parent}`,
-        JSON.stringify(guardianData)
+        JSON.stringify(guardianData),
+        cookie
       );
       await fetchData(
         `${url.student}/${_id}`,
@@ -46,22 +51,26 @@ export default function ParentalInfo({
           father: father.data._id,
           guardian: guardian.data._id,
         }),
+        cookie,
         "PATCH"
       );
     } else {
       await fetchData(
         `${url.parent}/${f}`,
         JSON.stringify(value.father),
+        cookie,
         "PATCH"
       );
       await fetchData(
         `${url.parent}/${m}`,
         JSON.stringify(value.mother),
+        cookie,
         "PATCH"
       );
       await fetchData(
         `${url.parent}/${g}`,
         JSON.stringify(value.guardian),
+        cookie,
         "PATCH"
       );
     }

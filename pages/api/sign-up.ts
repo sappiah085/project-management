@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== "POST") return;
-  const data = await fetch(`${url.user}/sign-in`, {
+  const data = await fetch(`${url.user}/sign-up`, {
     method: "post",
     credentials: "include",
     headers: {

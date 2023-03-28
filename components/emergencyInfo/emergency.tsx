@@ -7,9 +7,11 @@ import { url } from "@/utils/urls";
 export default function Emergency({
   _id,
   handleChangeActive,
+  cookie,
 }: {
   _id?: string;
   handleChangeActive?: any;
+  cookie: string;
 }) {
   const [spin, setSpin] = useState(false);
   const [values, setValues] = useState({
@@ -26,6 +28,7 @@ export default function Emergency({
     await fetchData(
       `${url.student}/${_id}`,
       JSON.stringify({ emergency: values }),
+      cookie,
       "PATCH"
     );
     setSpin(false);
@@ -50,12 +53,16 @@ export default function Emergency({
       }
       `,
       });
-      const data = await fetchData(`${url.student}/student-graphql`, body);
+      const data = await fetchData(
+        `${url.student}/student-graphql`,
+        body,
+        cookie
+      );
       if (!data?.data?.student?.emergency) return;
       setValues(data?.data?.student?.emergency);
     };
     fetcher();
-  }, []);
+  }, [cookie]);
   return (
     <>
       <form onSubmit={onSubmit}>

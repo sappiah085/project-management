@@ -27,10 +27,12 @@ export default function PersonalInfo({
   setId,
   _id,
   handleChangeActive,
+  cookie,
 }: {
   setId?: (arg: string) => void;
   handleChangeActive?: any;
   _id?: string;
+  cookie: string;
 }) {
   const [value, setValues] = useState({
     surname: "",
@@ -58,10 +60,10 @@ export default function PersonalInfo({
     });
     if (!_id) {
       //create new student
-      const studentInfo = await fetchData(url.student, newStudent);
+      const studentInfo = await fetchData(url.student, newStudent, cookie);
       if (setId) setId(studentInfo.data.id);
     } else {
-      await fetchData(`${url.student}/${_id}`, newStudent, "PATCH");
+      await fetchData(`${url.student}/${_id}`, newStudent, cookie, "PATCH");
     }
     setSpin(false);
     handleChangeActive();
@@ -89,7 +91,8 @@ export default function PersonalInfo({
           }
         }
         `,
-          })
+          }),
+          cookie
         );
         if (!studentInfo?.data?.studentUncompleted) return;
         const {
@@ -109,7 +112,7 @@ export default function PersonalInfo({
       }
     };
     fetcher();
-  }, []);
+  }, [cookie]);
   return (
     <>
       <h1 className="font-bold  text-xl sticky top-16 z-10 bg-white py-1">
