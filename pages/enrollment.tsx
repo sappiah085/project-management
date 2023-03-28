@@ -1,18 +1,16 @@
 import Emergency from "@/components/emergencyInfo/emergency";
 import EnrollmentLayout from "@/components/enrollmentLayout/enrollmentLayOut";
 import ParentalInfo from "@/components/parentalInfo/parentalInfo";
-import PersonalInfo, { Student } from "@/components/personalInfo/personalnfo";
+import PersonalInfo from "@/components/personalInfo/personalnfo";
 import PreviousSchool from "@/components/previousSchool/previousSchool";
 import { useUser } from "@/components/protected/protect";
 import SubmitBtn from "@/components/submitButton/submitButton";
 import { fetchData } from "@/utils/function";
-import { url } from "@/utils/urls";
-import { useRouter } from "next/router";
+import { getSession, url } from "@/utils/urls";
 import { useEffect, useState } from "react";
 export default function Enrollment() {
   const [active, setActive] = useState(0);
   const [PopUp, setPopUp] = useState(false);
-  const router = useRouter();
   const [spin, setSpin] = useState(false);
   const [generalState, setGeneralState] = useState({ id: "" });
   const [completed, setCompleted] = useState<number[]>([]);
@@ -43,7 +41,7 @@ export default function Enrollment() {
   //popup
   function popupFunc() {
     setPopUp((pre) => !pre);
-}
+  }
   const data = useUser();
 
   //query student and set id
@@ -72,8 +70,6 @@ export default function Enrollment() {
     };
     fetcher();
   }, []);
-
-  if (!data?.user) router.push("/login");
   return (
     <>
       {data.user && (
@@ -139,4 +135,19 @@ export default function Enrollment() {
       )}
     </>
   );
+}
+export async function getServerSideProps(context: any) {
+  const user = await getSession(context);
+  if (!user)
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  return {
+    props: {
+      user: user,
+    },
+  };
 }

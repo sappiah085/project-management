@@ -1,8 +1,5 @@
-import { url } from "@/utils/urls";
-import { useRouter } from "next/router";
-import { createContext, useContext, useMemo, useState, FC } from "react";
-import { useQuery } from "react-query";
-import Loader from "../loader/loader";
+import { createContext, useContext, useMemo, useState } from "react";
+
 type userObj = {
   _d: string;
   name: string;
@@ -32,43 +29,5 @@ function UserProvider({
   }, [user]);
   return <userContext.Provider value={userOb}>{children}</userContext.Provider>;
 }
-const fetcher = async () => {
-  try {
-    const data = await fetch(`${url.user}/get-user`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-        query {
-          user{
-          name,
-          email,
-          role,
-          _id
-          }
-        }
-      `,
-      }),
-    });
-    const json = await data.json();
-    return json;
-  } catch (error) {
-    return null;
-  }
-};
-const Protect = ({ children }: { children: any }) => {
-  const { isLoading, data } = useQuery("user", fetcher);
 
-  return (
-    <>
-      {isLoading && <Loader />}
-      {!isLoading && (
-        <UserProvider initialUser={data?.data?.user}>{children}</UserProvider>
-      )}
-    </>
-  );
-};
-export default Protect;
+export default UserProvider;

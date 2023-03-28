@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Protect>
+      <Protect initialUser={pageProps?.user}>
         <Component {...pageProps} />
       </Protect>
     </QueryClientProvider>

@@ -38,7 +38,7 @@ export default function EnrollmentSideBar({
     };
   }
   async function signOut() {
-    await fetchData(`${url.user}/logout`, JSON.stringify({ logout: true }));
+    await fetchData(`/api/logout`, JSON.stringify({ logout: true }));
     router.push("/");
   }
   return (

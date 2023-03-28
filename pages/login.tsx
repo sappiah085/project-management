@@ -2,6 +2,7 @@ import ImageIllus from "@/components/image/image";
 import Head from "next/head";
 import woman from "../public/assets/woman.webp";
 import Input from "@/components/input/input";
+import * as cookie from "cookie";
 import SubmitBtn from "@/components/submitButton/submitButton";
 import Link from "next/link";
 import LogoName from "@/components/logo_name/logoName";
@@ -10,11 +11,9 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { isEmail, setInput, validateEmailInput } from "@/utils/function";
 import Alert from "@/components/alert/alert";
-import { url } from "@/utils/urls";
-import { QueryClient } from "react-query";
+import { getSession } from "@/utils/urls";
 export default function LogIn() {
   const { user } = useUser();
-  const queryClient = new QueryClient();
   const router = useRouter();
   const [spin, setSpin] = useState(false);
   const [values, setValues] = useState({ email: "", password: "" });
@@ -30,7 +29,8 @@ export default function LogIn() {
       return;
     }
     setSpin(true);
-    const data = await fetch(`${url.user}/sign-in`, {
+
+    const data = await fetch(`/api/user`, {
       method: "post",
       credentials: "include",
       headers: {
@@ -48,10 +48,8 @@ export default function LogIn() {
       });
       return;
     }
-    queryClient.invalidateQueries("user");
     router.reload();
   }
-  if (user) router.push("/enrollment");
   return (
     <>
       <Head>
@@ -68,7 +66,10 @@ export default function LogIn() {
               />
             )}
             <LogoName />
-            <form className="flex overflow-x-hidden px-2 flex-col gap-3 w-full" onSubmit={onSubmit}>
+            <form
+              className="flex overflow-x-hidden px-2 flex-col gap-3 w-full"
+              onSubmit={onSubmit}
+            >
               <h2 className="font-semibold text-xl">Welcome Back</h2>
               <h3>Akwaaba! that’s our way of welcoming you back.</h3>
               <Input
@@ -114,4 +115,17 @@ export default function LogIn() {
       )}
     </>
   );
+}
+export async function getServerSideProps(context: any) {
+  const user = await getSession(context);
+  if (user)
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/enrollment",
+      },
+    };
+  return {
+    props: {}, // will be passed to the page component as props
+  };
 }
