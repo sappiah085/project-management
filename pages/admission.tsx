@@ -7,11 +7,11 @@ import Link from "next/link";
 import LogoName from "@/components/logo_name/logoName";
 import { useState } from "react";
 import type { NextPageWithLayout } from "./_app";
-import { url } from "@/utils/urls";
 import { useRouter } from "next/router";
 import Alert from "@/components/alert/alert";
 import { isEmail, setInput, validateEmailInput } from "@/utils/function";
 const Admission: NextPageWithLayout = () => {
+  // state values
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -21,9 +21,11 @@ const Admission: NextPageWithLayout = () => {
   const [open, setOpen] = useState({ status: "", message: "", open: false });
   const router = useRouter();
   const [spin, setSpin] = useState(false);
+  // on submit handler
   async function onSubmit(e: any) {
     e.preventDefault();
     const { email, password, cPass, name } = values;
+    // validate inputs
     if (
       !email.length ||
       !password.length ||
@@ -38,8 +40,10 @@ const Admission: NextPageWithLayout = () => {
       });
       return;
     }
+    // set spin
     setSpin(true);
-    const data = await fetch(`/api/sign-up`, {
+    // perform sign up api call
+    const api = await fetch(`/api/sign-up`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -47,12 +51,15 @@ const Admission: NextPageWithLayout = () => {
       },
       body: JSON.stringify(values),
     });
+    // set spin to default
     setSpin(false);
-    const dataFinal = await data.json();
-    if (dataFinal?.status == "failed") {
-      setOpen({ status: "warning", message: dataFinal.message, open: true });
+    const data = await api.json();
+    // alert errors
+    if (data.status == "failed") {
+      setOpen({ status: "warning", message: data.message, open: true });
       return;
     }
+    // empty state 
     setValues({
       email: "",
       password: "",

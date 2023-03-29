@@ -2,8 +2,7 @@ import moment from "moment";
 import { url } from "./urls";
 const emailReg = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 export const isEmail = (email: string) => emailReg.test(email);
-export const validateEmailInput = (email: string) =>
-  isEmail(email) || !email.length ? "" : "!border-red-300";
+export const validateEmailInput = (email: string) => (isEmail(email) || !email.length ? "" : "!border-red-300");
 export function setInput(e: any, name: string, setState: (args: any) => void) {
   setState((pre: any) => ({ ...pre, [name]: e.target.value }));
 }
@@ -13,19 +12,9 @@ export const dateFormat = (date: any) => {
   const formattedDate = moment(dateIOS).format("YYYY-MM-DD");
   return formattedDate;
 };
-type context = {
-  req: {
-    headers: {
-      cookie: undefined | string;
-    };
-  };
-};
-export const fetchData = async (
-  url: string,
-  body: string,
-  cookie: string,
-  method = "POST"
-) => {
+
+
+export const fetchData = async (url: string, body: string, cookie: string, method = "POST") => {
   const cookies = cookie || "";
   const data = await fetch(`${url}`, {
     method: method,
@@ -48,8 +37,8 @@ type userObj = {
   role: string;
 };
 
-export const getSession = async (con: context) => {
-  const cookies = con.req.headers.cookie || "";
+// get session
+export async function getSession(cookies: string): Promise<userObj | null> {
   const data = await fetch(`${url.user}/get-user`, {
     method: "POST",
     credentials: "include",
@@ -73,4 +62,25 @@ export const getSession = async (con: context) => {
   const json = await data.json();
   const user: userObj = json.data?.user;
   return user || null;
-};
+}
+// get id if available
+export async function getId(cookie: string): Promise<string | null> {
+  const studentInfo = await fetchData(
+    `${url.student}/student-graphql`,
+    JSON.stringify({
+      query: `
+            query {
+            studentUncompleted {
+            _id
+          }
+        }
+        `,
+    }),
+    cookie
+  );
+  if (studentInfo?.data?.studentUncompleted) {
+    const { _id } = studentInfo?.data?.studentUncompleted;
+    return _id;
+  }
+  return null;
+}

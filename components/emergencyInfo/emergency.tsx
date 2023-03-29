@@ -3,16 +3,9 @@ import Input from "../input/input";
 import SubmitBtn from "../submitButton/submitButton";
 import { fetchData, setInput } from "@/utils/function";
 import { url } from "@/utils/urls";
-
-export default function Emergency({
-  _id,
-  handleChangeActive,
-  cookie = "",
-}: {
-  _id?: string;
-  handleChangeActive?: any;
-  cookie?: string;
-}) {
+type props = { _id?: string; handleChangeActive?: any; cookie?: string };
+export default function Emergency({ _id, handleChangeActive, cookie = "" }: props) {
+  // state values
   const [spin, setSpin] = useState(false);
   const [values, setValues] = useState({
     relationship: "",
@@ -22,11 +15,12 @@ export default function Emergency({
     altPhoneNumber: "",
     email: "",
   });
+  // update handler
   async function onSubmit(e: any) {
     e.preventDefault();
     setSpin(true);
     await fetchData(
-      `${url.student}/${_id}`,
+      `/api/update/?id=${_id}`,
       JSON.stringify({ emergency: values }),
       cookie,
       "PATCH"
@@ -34,30 +28,12 @@ export default function Emergency({
     setSpin(false);
     handleChangeActive();
   }
+
+  // query for emergency
   useEffect(() => {
     if (!_id) return;
     const fetcher = async () => {
-      const body = JSON.stringify({
-        query: `
-      query { 
-        student(id:"${_id}") {
-          emergency {
-            relationship,
-            name,
-            city,
-            phoneNumber,
-            altPhoneNumber,
-            email
-          }
-        }
-      }
-      `,
-      });
-      const data = await fetchData(
-        `${url.student}/student-graphql`,
-        body,
-        cookie
-      );
+      const data = await fetchData(`/api/emergency/?id=${_id}`, "", cookie);
       if (!data?.data?.student?.emergency) return;
       setValues(data?.data?.student?.emergency);
     };

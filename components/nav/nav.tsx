@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import LogoName from "../logo_name/logoName";
 
+// link type
 type link = {
   label: string;
   path: string;
 };
+// links
 const links: link[] = [
   {
     label: "Home",
@@ -22,26 +24,23 @@ const links: link[] = [
   },
   {
     label: "Admission",
-    path: "/admission",
+    path: "/login",
   },
   {
     label: "Newsletter",
     path: "/newsletter",
   },
 ];
+
 export default function NavBar({ handleMenu }: { handleMenu: () => void }) {
+  // get pathname 
   const { pathname } = useRouter();
 
   return (
     <header className="lg:fixed w-full z-10 flex flex-col justify-center">
       <nav className="h-full w-full flex flex-col gap-4 justify-center font-gilroy p-6  bg-white lg:flex-row lg:items-center lg:justify-between">
         <LogoName />
-        <input
-          type="checkbox"
-          onChange={handleMenu}
-          className="hidden peer"
-          id="open"
-        />
+        <input type="checkbox" onChange={handleMenu} className="hidden peer" id="open" />
         <label
           htmlFor="open"
           className="inline-block fixed h-12 w-12 bg-white rounded-3xl drop-shadow-lg z-[100] top-5 right-4 after:absolute after:h-[.2rem] after:w-2/3 after:bg-zinc-400 after:top-[40%] after:left-[50%] after:translate-x-[-50%] after:rounded-md before:rounded-md before:absolute before:h-[.2rem] before:w-2/3 before:bg-zinc-400  before:top-[60%] before:left-[50%] before:translate-x-[-50%] peer-checked:after:rotate-[45deg] peer-checked:before:rotate-[-45deg] peer-checked:before:top-6 peer-checked:after:top-6 before:transition-all after:transition-all lg:hidden"
@@ -49,12 +48,7 @@ export default function NavBar({ handleMenu }: { handleMenu: () => void }) {
         <ul className="flex flex-col gap-4 w-full transition-[transform] items-center justify-center translate-x-[100%] p-0 opacity-0 overflow-hidden h-0 peer-checked:h-screen peer-checked:translate-x-0 peer-checked:p-9 duration-250 peer-checked:opacity-100 absolute top-0 bg-white left-0 lg:flex-row lg:translate-x-0 lg:h-full lg:opacity-100 lg:static lg:w-max lg:items-center lg:px-2">
           {links.map(({ label, path }) => (
             <li key={label}>
-              <Link
-                className={`text-xl inline-block relative p-2 link-style ${
-                  pathname === path ? "black" : " text-zinc-500"
-                }`}
-                href={path}
-              >
+              <Link className={`text-xl inline-block relative p-2 link-style ${pathname === path ? "black" : " text-zinc-500"}`} href={path}>
                 {label}
               </Link>
             </li>

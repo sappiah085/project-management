@@ -1,37 +1,18 @@
 import { fetchData } from "@/utils/function";
 import { logout } from "../sideBarAdmin/sideBarLinks";
-import { url } from "@/utils/urls";
 import { useRouter } from "next/router";
+import { SideBarProps } from "./interface";
+import { FC } from "react";
 
-const steps = [
-  "Personal Information",
-  "Parental Information",
-  "Previous School",
-  "Emergency Information",
-  "Application Preview",
-];
+const steps = ["Personal Information", "Parental Information", "Previous School", "Emergency Information", "Application Preview"];
 
-export default function EnrollmentSideBar({
-  openNav,
-  active,
-  handleOpen,
-  handleActive,
-  completed,
-  cookie,
-}: {
-  handleActive: (arg: number) => void;
-  openNav: boolean;
-  active: number;
-  completed: number[];
-  cookie: string;
-  handleOpen: () => void;
-}) {
+const EnrollmentSideBar: FC<SideBarProps> = ({ openNav, active, handleOpen, handleActive, completed, cookie }) => {
+  //router reference
   const router = useRouter();
+  // check tab-color or progress
   function checkColors(id: number) {
-    if (id === active)
-      return { active: true, bg: "#582BE8", color: "white", completed: false };
-    if (completed.includes(id))
-      return { active: false, bg: "#0CBB52", color: "white", completed: true };
+    if (id === active) return { active: true, bg: "#582BE8", color: "white", completed: false };
+    if (completed.includes(id)) return { active: false, bg: "#0CBB52", color: "white", completed: true };
     return {
       active: false,
       bg: "rgb(212 212 216 / 0.6)",
@@ -39,16 +20,15 @@ export default function EnrollmentSideBar({
       completed: false,
     };
   }
+  // sign out handler
   async function signOut() {
     await fetchData(`/api/logout`, JSON.stringify({ logout: true }), cookie);
-    router.push("/");
+    router.push("/login");
   }
+  
   return (
     <>
-      <div
-        style={{ width: "0px" }}
-        className="flex flex-col h-full  lg:!w-[290px]  pt-24  flex-shrink-0 "
-      ></div>
+      <div style={{ width: "0px" }} className="flex flex-col h-full  lg:!w-[290px]  pt-24  flex-shrink-0 "></div>
       <nav
         style={{
           width: openNav ? "270px" : "0px",
@@ -65,9 +45,7 @@ export default function EnrollmentSideBar({
               handleOpen();
             }}
             className={`flex after:absolute after:left-0 after:top-[50%] after:translate-y-[-50%] relative disabled:opacity-70 after:h-full after:w-[5px]  items-center font-semibold w-full  gap-4 px-5 py-1 rounded-3xl  ${
-              !checkColors(id).active
-                ? "after:bg-transparent "
-                : "after:bg-[#582BE8]"
+              !checkColors(id).active ? "after:bg-transparent " : "after:bg-[#582BE8]"
             }`}
             key={step}
           >
@@ -80,18 +58,12 @@ export default function EnrollmentSideBar({
             >
               {id + 1}
             </span>
-            <span
-              style={{ color: checkColors(id).completed ? "#0CBB52" : "black" }}
-              className="flex-shrink-0"
-            >
+            <span style={{ color: checkColors(id).completed ? "#0CBB52" : "black" }} className="flex-shrink-0">
               {step}
             </span>
           </button>
         ))}
-        <button
-          onClick={signOut}
-          className="flex my-auto mx-auto text-xl w-full items-center text-[#333342] gap-4 px-5 py-2 rounded-3xl"
-        >
+        <button onClick={signOut} className="flex my-auto mx-auto text-xl w-full items-center text-[#333342] gap-4 px-5 py-2 rounded-3xl">
           {" "}
           {logout.icon}
           {<span>{logout.label}</span>}
@@ -99,4 +71,5 @@ export default function EnrollmentSideBar({
       </nav>
     </>
   );
-}
+};
+export default EnrollmentSideBar;

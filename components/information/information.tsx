@@ -2,21 +2,10 @@ import { useEffect, useState } from "react";
 import Input from "../input/input";
 import SelectInput from "../selectInput/selectInput";
 import { fetchData, setInput, validateEmailInput } from "@/utils/function";
-import { url } from "@/utils/urls";
+import { InfoProps } from "./interface";
 
-export default function InformationParent({
-  parent,
-  name,
-  cookie = "",
-  getValue,
-  _id,
-}: {
-  parent: string;
-  name: string;
-  _id?: string;
-  cookie?: string;
-  getValue: (arg: any) => void;
-}) {
+export default function InformationParent({ parent, name, cookie = "", getValue, _id }: InfoProps) {
+  // state values
   const [value, setValue] = useState({
     education: "",
     religion: "",
@@ -27,35 +16,15 @@ export default function InformationParent({
     name: "",
     _id: "",
   });
+  //send value to parent
   useEffect(() => {
     getValue(value);
   }, [value]);
+  //query info on mount
   useEffect(() => {
     if (!_id) return;
     const fetcher = async () => {
-      const body = JSON.stringify({
-        query: `
-      query { 
-        student(id:"${_id}") {
-          ${name} {
-            _id,
-            name,
-            number,
-            email,
-            address,
-            religion,
-            occupation,
-            education
-          }
-        }
-      }
-      `,
-      });
-      const data = await fetchData(
-        `${url.student}/student-graphql`,
-        body,
-        cookie
-      );
+      const data = await fetchData(`/api/query-parent/?name=${name}&_id=${_id}`, JSON.stringify({}), cookie);
       if (!data?.data?.student) return;
       setValue(data.data.student[name]);
     };
@@ -64,9 +33,7 @@ export default function InformationParent({
   return (
     <>
       {" "}
-      <h2 className="font-semibold sticky text-sm lg:text-lg top-16  bg-white  py-1">
-        {parent} Information
-      </h2>
+      <h2 className="font-semibold sticky text-sm lg:text-lg top-16  bg-white  py-1">{parent} Information</h2>
       <div className="w-full  mb-6 pt-9 grid md:grid-cols-2 gap-5">
         <Input
           name="Full Name"

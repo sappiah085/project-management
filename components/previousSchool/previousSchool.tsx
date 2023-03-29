@@ -13,6 +13,7 @@ export default function PreviousSchool({
   _id?: string;
   cookie?: string;
 }) {
+  //state values
   const [spin, setSpin] = useState(false);
   const [values, setValues] = useState({
     schoolName: "",
@@ -22,11 +23,12 @@ export default function PreviousSchool({
     reason: "",
     dateLeft: "",
   });
+  //patch data
   async function onSubmit(e: any) {
     e.preventDefault();
     setSpin(true);
     await fetchData(
-      `${url.student}/${_id}`,
+      `/api/update/?id=${_id}`,
       JSON.stringify({ previousSchool: values }),
       cookie,
       "PATCH"
@@ -34,28 +36,13 @@ export default function PreviousSchool({
     setSpin(false);
     handleChangeActive();
   }
+  //query previous school info
   useEffect(() => {
     if (!_id) return;
     const fetcher = async () => {
-      const body = JSON.stringify({
-        query: `
-      query { 
-        student(id:"${_id}") {
-          previousSchool {
-            schoolName,
-            city,
-            country,
-            levelCompleted,
-            reason,
-            dateLeft
-          }
-        }
-      }
-      `,
-      });
       const data = await fetchData(
-        `${url.student}/student-graphql`,
-        body,
+        `/api/query-previous-school/?_id=${_id}`,
+        JSON.stringify({}),
         cookie
       );
       if (!data?.data?.student?.previousSchool) return;
@@ -76,7 +63,7 @@ export default function PreviousSchool({
             name="school-name"
             type="text"
             label="School Name"
-            placeholder="Asante"
+            placeholder="Ashanti"
             value={values.schoolName}
             onChange={(e: any) => setInput(e, "schoolName", setValues)}
           />
