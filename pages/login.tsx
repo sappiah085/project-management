@@ -63,7 +63,13 @@ export default function LogIn() {
       <main className="flex flex-wrap-reverse gap-6 p-5 font-gilroy min-h-screen items-center max-w-7xl mx-auto w-full justify-around">
         <section className="flex h-full w-full max-w-sm flex-col gap-9">
           {/* alert in a case of an error  */}
-          {open.open && <Alert color={open.status} message={open.message} setOpen={() => setOpen((pre) => ({ ...pre, open: false }))} />}
+          {open.open && (
+            <Alert
+              color={open.status}
+              message={open.message}
+              setOpen={() => setOpen((pre) => ({ ...pre, open: false }))}
+            />
+          )}
           <LogoName />
           <form className="flex overflow-x-hidden px-2 flex-col gap-3 w-full" onSubmit={onSubmit}>
             <h2 className="font-semibold text-xl">Welcome Back</h2>
@@ -89,7 +95,11 @@ export default function LogIn() {
             <Link className="self-end" href={"/forgot-password"}>
               Forgot password?
             </Link>
-            <SubmitBtn spin={spin} className="w-full bg-black after:bg-black justify-center" label="Sign In" />
+            <SubmitBtn
+              spin={spin}
+              className="w-full bg-black after:bg-black justify-center"
+              label="Sign In"
+            />
             <p>
               Don’t have an account?{" "}
               <Link className="font-bold underline" href={"/admission"}>

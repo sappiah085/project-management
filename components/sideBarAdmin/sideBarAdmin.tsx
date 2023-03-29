@@ -1,16 +1,24 @@
 import Link from "next/link";
 import { links, logout } from "./sideBarLinks";
 import { useRouter } from "next/router";
+import { fetchData } from "@/utils/function";
 export default function SideBarAdmin({
   openNav,
   handleOpen,
+  cookie,
 }: {
   openNav: boolean;
   handleOpen: () => void;
+  cookie: string;
 }) {
+  const router = useRouter();
+  //logout
+  async function logoutFunc() {
+    await fetchData(`/api/logout`, JSON.stringify({ logout: true }), cookie);
+    router.push("/admin/login");
+  }
   const { pathname } = useRouter(); //TODO:change active
-  const checkLocation = (label: string) =>
-    pathname.split("/")[2] === label.toLowerCase();
+  const checkLocation = (label: string) => pathname.split("/")[2] === label.toLowerCase();
 
   return (
     <>
@@ -40,7 +48,10 @@ export default function SideBarAdmin({
             <span>{label}</span>
           </Link>
         ))}
-        <button className="flex w-full items-center text-[#333342] gap-4 px-5 py-2 rounded-3xl">
+        <button
+          onClick={logoutFunc}
+          className="flex w-full items-center text-[#333342] gap-4 px-5 py-2 rounded-3xl"
+        >
           {" "}
           {logout.icon}
           <span>{logout.label}</span>

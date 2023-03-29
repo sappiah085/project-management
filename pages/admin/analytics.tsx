@@ -30,35 +30,20 @@ export default function Analytics() {
         <h1 className="font-bold text-xl">Analytics</h1>
         <div className="w-full flex flex-wrap gap-4">
           <div className="w-full flex justify-center items-center max-w-xl p-5 my-auto border-[1px] rounded-md">
-            <Chart
-              title={"Visitor analytics"}
-              typeChart={"line"}
-              dataPoints={dataPoints}
-            />
+            <Chart title={"Visitor analytics"} typeChart={"line"} dataPoints={dataPoints} />
           </div>
           <div className="w-full max-w-xl p-5 my-auto border-[1px] rounded-md">
-            <Chart
-              title={"Visitor analytics"}
-              typeChart="column"
-              dataPoints={dataPoints}
-            />
+            <Chart title={"Visitor analytics"} typeChart="column" dataPoints={dataPoints} />
           </div>
           <div className="w-full max-w-xl p-5 my-auto border-[1px] rounded-md">
-            <Chart
-              title={"Visitor analytics"}
-              typeChart="doughnut"
-              dataPoints={dataPoints}
-            />
+            <Chart title={"Visitor analytics"} typeChart="doughnut" dataPoints={dataPoints} />
           </div>
           <div className="w-full max-w-xl p-5 my-auto border-[1px] rounded-md">
-            <Chart
-              title={"Visitor analytics"}
-              typeChart="splineArea"
-              dataPoints={dataPoints}
-            />
+            <Chart title={"Visitor analytics"} typeChart="splineArea" dataPoints={dataPoints} />
           </div>
         </div>
       </section>
     </LayoutAdmin>
   );
 }
+

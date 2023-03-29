@@ -2,7 +2,8 @@ import moment from "moment";
 import { url } from "./urls";
 const emailReg = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 export const isEmail = (email: string) => emailReg.test(email);
-export const validateEmailInput = (email: string) => (isEmail(email) || !email.length ? "" : "!border-red-300");
+export const validateEmailInput = (email: string) =>
+  isEmail(email) || !email.length ? "" : "!border-red-300";
 export function setInput(e: any, name: string, setState: (args: any) => void) {
   setState((pre: any) => ({ ...pre, [name]: e.target.value }));
 }
@@ -12,7 +13,6 @@ export const dateFormat = (date: any) => {
   const formattedDate = moment(dateIOS).format("YYYY-MM-DD");
   return formattedDate;
 };
-
 
 export const fetchData = async (url: string, body: string, cookie: string, method = "POST") => {
   const cookies = cookie || "";
