@@ -47,27 +47,20 @@ export default function EnrollmentLayout({
       >
         <div className="bg-white lg:p-7 p-2 py-8 max-w-md rounded-[50px] flex flex-col gap-2 items-center relative">
           <button
-            onClick={popupFunc}
+            onClick={() => popupFunc(true)}
             className="absolute top-10 bg-zinc-600/10 p-2 rounded-full font-bold right-10"
           >
             <GrClose />
           </button>
-          <Image
-            className="h-[60px] object-contain"
-            src={image}
-            alt="news letter"
-          />
-          <h1 className="font-bold text-center lg:text-xl">
-            Application Successful
-          </h1>
+          <Image className="h-[60px] object-contain" src={image} alt="news letter" />
+          <h1 className="font-bold text-center lg:text-xl">Application Successful</h1>
           <p className="text-sm  text-center">
-            Dear parent or guardian, the application of your ward has been
-            successfully received. Management will reach out to you shortly on
-            the status of your application. You can equally visit here to check
-            your status. Thank you!
+            Dear parent or guardian, the application of your ward has been successfully received.
+            Management will reach out to you shortly on the status of your application. You can
+            equally visit here to check your status. Thank you!
           </p>
           <SubmitBtn
-            onClick={popupFunc}
+            onClick={() => popupFunc(true)}
             label="Back"
             className="bg-white !text-black border-[1px] rounded-lg justify-center w-1/3"
           />
