@@ -181,7 +181,7 @@ export async function getServerSideProps(context: any) {
     context.req.headers.cookie || ""
   );
 
-  if (!user)
+  if (!user || user.role === "user")
     return {
       redirect: {
         destination: "/admin/login",

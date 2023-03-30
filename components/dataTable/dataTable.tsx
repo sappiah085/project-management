@@ -11,7 +11,7 @@ export default function DataTable({
   headerArray: string[];
   dataArray: any[];
 }) {
-  const tableRef = useRef(null);
+  const tableRef = useRef<HTMLTableElement>(null!);
   const values = dataArray.map((el, id) => [id + 1, ...Object.values(el)]);
   return (
     <section className="w-full flex-col flex gap-1">
@@ -33,12 +33,7 @@ export default function DataTable({
           <span className="absolute top-[50%] left-4 translate-y-[-40%]">
             <BsSearch />
           </span>
-          <Input
-            className="pl-10 !rounded-3xl"
-            placeholder="Search"
-            name="search"
-            type="text"
-          />
+          <Input className="pl-10 !rounded-3xl" placeholder="Search" name="search" type="text" />
         </div>
 
         <SelectInput
