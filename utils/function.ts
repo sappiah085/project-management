@@ -14,7 +14,12 @@ export const dateFormat = (date: any) => {
   return formattedDate;
 };
 
-export const fetchData = async (url: string, body: string, cookie: string, method = "POST") => {
+export const fetchData = async (
+  url: string,
+  body: string | undefined,
+  cookie: string,
+  method = "POST"
+) => {
   const cookies = cookie || "";
   const data = await fetch(`${url}`, {
     method: method,
@@ -25,7 +30,6 @@ export const fetchData = async (url: string, body: string, cookie: string, metho
     },
     body,
   });
-
   const dateInfo = await data.json();
   return dateInfo;
 };
@@ -84,3 +88,16 @@ export async function getId(cookie: string): Promise<string | null> {
   }
   return null;
 }
+export type note = {
+  createdAt: string;
+  message: string;
+  title: string;
+  read: boolean;
+  _id: string;
+};
+export const checkRead: (notifications: note[]) => boolean = (notifications) => {
+  for (const element of notifications) {
+    if (!element.read) return false;
+  }
+  return true;
+};

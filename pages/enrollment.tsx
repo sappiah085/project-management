@@ -25,6 +25,16 @@ export default function Enrollment({ id, cookie }: { id: string; cookie: string 
       cookie,
       "PATCH"
     );
+    await fetchData(
+      "/api/getNotifications",
+      JSON.stringify({
+        title: "Details submitted",
+        message:
+          "Please your enrollment information has been submitted successful. The administration will get back to you soon",
+      }),
+      cookie
+    );
+
     setSpin(false);
     popupFunc();
   }

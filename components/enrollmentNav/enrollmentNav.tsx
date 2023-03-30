@@ -3,9 +3,22 @@ import Notification from "../notification/notification";
 import { useState } from "react";
 import LogoName from "../logo_name/logoName";
 import { useUser } from "../protected/protect";
-export default function EnrollmentNav({ handleOpen, showToggle = true }: any) {
+import { useQuery } from "react-query";
+import { checkRead, note } from "@/utils/function";
+
+export default function EnrollmentNav({ handleOpen, showToggle = true, cookie }: any) {
   const [openNotification, setOpenNotification] = useState(false);
+
   const user = useUser();
+  //query for notifications
+  const { data } = useQuery<note[]>("notifications", () =>
+    fetch("/api/getNotifications", {
+      headers: {
+        Cookie: cookie,
+      },
+    }).then((res) => res.json())
+  );
+
   return (
     <header className="w-full bg-white z-[100] flex items-center p-3 px-5 sticky top-0">
       <nav className="flex items-center relative justify-end w-full  ">
@@ -23,6 +36,11 @@ export default function EnrollmentNav({ handleOpen, showToggle = true }: any) {
             onClick={() => setOpenNotification((pre) => !pre)}
             className="bg-zinc-300/10 h-[40px] w-[40px] flex justify-center items-center rounded-full"
           >
+            <span className="relative">
+              {!checkRead(data || []) && (
+                <span className="rounded-full block h-[9px] w-[9px] bg-red-500 absolute top-[-10px] right-[-20px]"></span>
+              )}
+            </span>
             <svg
               width="19"
               height="23"
@@ -38,7 +56,7 @@ export default function EnrollmentNav({ handleOpen, showToggle = true }: any) {
               />
             </svg>
           </button>
-          {openNotification && <Notification />}
+          {openNotification && !!data?.length && <Notification notifications={data || []} />}
           <button className="h-[40px] font-bold text-white  rounded-full bg-blue-500 w-[40px] ">
             {user.user?.name.slice(0, 2).toLocaleUpperCase()}
           </button>

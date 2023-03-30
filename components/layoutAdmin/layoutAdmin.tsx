@@ -7,7 +7,7 @@ export default function LayoutAdmin({ children, cookie }: any) {
 
   return (
     <main className="flex  font-gilroy flex-col w-full">
-      <AdminNav handleOpen={() => setOpenNav((pre) => !pre)} />
+      <AdminNav cookie={cookie} handleOpen={() => setOpenNav((pre) => !pre)} />
       <div className="w-full flex justify-between items-start">
         <SideBarAdmin
           cookie={cookie}

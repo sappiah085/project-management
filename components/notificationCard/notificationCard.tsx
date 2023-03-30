@@ -3,9 +3,11 @@ import { useState } from "react";
 export default function NotificationCard({
   message,
   slice = 100,
+  title,
 }: {
   message: string;
   slice?: number;
+  title: string;
 }) {
   const [readMore, setReadMore] = useState(false);
   return (
@@ -28,9 +30,7 @@ export default function NotificationCard({
         </svg>
       </span>
       <span>
-        <h2 className="font-bold text-sm lg:text-lg bg-white py-1">
-          New Admission🔥🔥
-        </h2>
+        <h2 className="font-bold text-sm lg:text-lg bg-white py-1">{title}</h2>
         <p className=" text-sm  lg:text-lg gap-1">
           {message.slice(0, readMore ? 999999 : slice)}
           {!readMore && (

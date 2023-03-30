@@ -1,18 +1,21 @@
-import LayoutAdmin from "@/components/layoutAdmin/layoutAdmin";
+
+import EnrollmentNav from "@/components/enrollmentNav/enrollmentNav";
+
 import NotificationCard from "@/components/notificationCard/notificationCard";
 import { fetchData, getSession, note } from "@/utils/function";
 import { url } from "@/utils/urls";
 
 export default function Notifications({
-  notifications,
   cookie,
+  notifications,
 }: {
-  notifications: note[];
   cookie: string;
+  notifications: note[];
 }) {
   return (
-    <LayoutAdmin cookie={cookie}>
-      <section className="flex max-w-3xl  gap-7 px-2 pb-3 flex-col">
+    <>
+      <section className="flex max-w-3xl mx-auto  gap-7 px-2 pb-3 flex-col">
+        <EnrollmentNav cookie={cookie} />
         <h1 className="bg-white text-2xl  font-bold">Notifications</h1>
         <div className="flex flex-col gap-4">
           {notifications.map(({ message, createdAt, title }) => (
@@ -20,10 +23,9 @@ export default function Notifications({
           ))}
         </div>
       </section>
-    </LayoutAdmin>
+    </>
   );
 }
-
 export async function getServerSideProps(context: any) {
   const user = await getSession(context.req.headers.cookie || "");
   const notifications = await fetchData(
@@ -32,10 +34,10 @@ export async function getServerSideProps(context: any) {
     context.req.headers.cookie || "",
     "GET"
   );
-  if (!user || user.role === "user")
+  if (!user)
     return {
       redirect: {
-        destination: "/admin/login",
+        destination: "/login",
         permanent: false,
       },
     };

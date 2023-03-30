@@ -24,7 +24,7 @@ export default function EnrollmentLayout({
       }}
       className={"flex  relative font-gilroy flex-col w-full "}
     >
-      <EnrollmentNav handleOpen={() => setOpenNav((pre) => !pre)} />
+      <EnrollmentNav cookie={cookie} handleOpen={() => setOpenNav((pre) => !pre)} />
       <div className="w-full flex justify-between items-start">
         <EnrollmentSideBar
           completed={completed}
