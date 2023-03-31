@@ -95,9 +95,10 @@ export type note = {
   read: boolean;
   _id: string;
 };
-export const checkRead: (notifications: note[]) => boolean = (notifications) => {
+export const checkRead: (notifications: note[]) => number = (notifications) => {
+  let count = 0;
   for (const element of notifications) {
-    if (!element.read) return false;
+    if (!element.read) count++;
   }
-  return true;
+  return count;
 };

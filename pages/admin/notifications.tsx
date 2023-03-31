@@ -15,8 +15,14 @@ export default function Notifications({
       <section className="flex max-w-3xl  gap-7 px-2 pb-3 flex-col">
         <h1 className="bg-white text-2xl  font-bold">Notifications</h1>
         <div className="flex flex-col gap-4">
-          {notifications.map(({ message, createdAt, title }) => (
-            <NotificationCard key={createdAt} slice={200} message={message} title={title} />
+          {notifications.map(({ message, createdAt, title, read }) => (
+            <NotificationCard
+              read={read}
+              key={createdAt}
+              slice={200}
+              message={message}
+              title={title}
+            />
           ))}
         </div>
       </section>

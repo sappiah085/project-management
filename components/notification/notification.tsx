@@ -29,8 +29,8 @@ export default function Notification({
       <h1 className="  pt-5 pb-2 px-5 text-sm border-b-[1px] lg:text-xl">Notifications</h1>
 
       <div className="flex gap-4 w-full flex-col max-h-[60vh] overflow-y-auto">
-        {notifications.map(({ message, title, createdAt }) => (
-          <NotificationCard title={title} key={createdAt} message={message} />
+        {notifications.map(({ message, title, createdAt, read }) => (
+          <NotificationCard read={read} title={title} key={createdAt} message={message} />
         ))}
       </div>
       <div className="flex px-5 text-sm pt-5 lg:text-lg border-t-[1px] bg-white  items-center justify-between pb-2">

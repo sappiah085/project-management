@@ -59,8 +59,10 @@ export default function AdminNav({ handleOpen, showToggle = true, cookie }: any)
             className="bg-zinc-300/10 h-[40px] w-[40px] flex justify-center items-center rounded-full"
           >
             <span className="relative">
-              {!checkRead(data || []) && (
-                <span className="rounded-full block h-[9px] w-[9px] bg-red-500 absolute top-[-10px] right-[-20px]"></span>
+              {!!checkRead(data || []) && (
+                <span className="rounded-full block h-[9px] w-[9px] bg-red-500 absolute top-[-10px] right-[-20px]">
+                  {checkRead(data || []) < 9 ? checkRead(data || []) : checkRead(data || []) + "+"}
+                </span>
               )}
             </span>
             <svg

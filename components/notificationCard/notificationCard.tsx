@@ -2,18 +2,25 @@ import { useState } from "react";
 
 export default function NotificationCard({
   message,
-  slice = 100,
+  slice = 150,
   title,
+  read,
 }: {
   message: string;
   slice?: number;
   title: string;
+  read: boolean;
 }) {
   const [readMore, setReadMore] = useState(false);
   return (
     <article className="flex  px-4 border-b-[1px] pb-2 mt-2 gap-3">
       <span className="bg-zinc-300/10 h-[40px] w-[40px] flex justify-center flex-shrink-0 items-center rounded-full transition-all">
         {" "}
+        <span className="relative">
+          {!read && (
+            <span className="rounded-full block h-[9px] w-[9px] bg-red-500 absolute top-[-10px] right-[-20px]"></span>
+          )}
+        </span>
         <svg
           width="19"
           height="23"
@@ -30,12 +37,15 @@ export default function NotificationCard({
         </svg>
       </span>
       <span>
-        <h2 className="font-bold text-sm lg:text-lg bg-white py-1">{title}</h2>
-        <p className=" text-sm  lg:text-lg gap-1">
+        <h2 className="font-bold text-sm lg:text-base bg-white py-1">{title}</h2>
+        <p className=" text-sm  lg:text-base gap-1">
           {message.slice(0, readMore ? 999999 : slice)}
-          {!readMore && (
+          {!readMore && message.length > 150 && (
             <button
-              onClick={() => setReadMore(true)}
+              onClick={(e: any) => {
+                e.stopPropagation();
+                setReadMore(true);
+              }}
               className="text-blue-600 inline-block ml-1 text-sm lg:text-lg"
             >
               Read more

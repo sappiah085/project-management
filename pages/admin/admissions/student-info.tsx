@@ -11,6 +11,7 @@ import Emergency from "@/components/emergencyInfo/emergency";
 import { dateFormat, fetchData, getSession } from "@/utils/function";
 import { url } from "@/utils/urls";
 import { useRouter } from "next/router";
+import { message } from "./message";
 export default function StudentInfo({
   id,
   cookie,
@@ -25,6 +26,29 @@ export default function StudentInfo({
   async function handleClick(approved: string) {
     setSpin(true);
     await fetchData(`/api/update/?id=${id}`, JSON.stringify({ approved }), cookie);
+    let bodyOfNotification = null;
+    if (approved === "accepted") {
+      const messageName = message.accepted.message.replace(
+        "{{name}}",
+        `${student.name.surname} ${student.name.otherNames}`
+      );
+      bodyOfNotification = {
+        title: message.accepted.title,
+        message: messageName,
+        recipient: student.enroller._id,
+      };
+    } else {
+      const messageName = message.decline.message.replace(
+        "{{name}}",
+        `${student.name.surname} ${student.name.otherNames}`
+      );
+      bodyOfNotification = {
+        title: message.decline.title,
+        message: messageName,
+        recipient: student.enroller._id,
+      };
+    }
+    await fetchData(`/api/getNotifications`, JSON.stringify(bodyOfNotification), cookie);
     setSpin(false);
     router.push("/admin/admissions");
   }
@@ -108,6 +132,9 @@ export async function getServerSideProps(context: any) {
       class
       nationality
       religion
+      enroller{
+        _id
+      }
     }
     }
     `,

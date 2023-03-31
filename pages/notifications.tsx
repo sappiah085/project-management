@@ -1,4 +1,3 @@
-
 import EnrollmentNav from "@/components/enrollmentNav/enrollmentNav";
 
 import NotificationCard from "@/components/notificationCard/notificationCard";
@@ -18,8 +17,14 @@ export default function Notifications({
         <EnrollmentNav cookie={cookie} />
         <h1 className="bg-white text-2xl  font-bold">Notifications</h1>
         <div className="flex flex-col gap-4">
-          {notifications.map(({ message, createdAt, title }) => (
-            <NotificationCard key={createdAt} slice={200} message={message} title={title} />
+          {notifications.map(({ message, createdAt, title, read }) => (
+            <NotificationCard
+              read={read}
+              key={createdAt}
+              slice={200}
+              message={message}
+              title={title}
+            />
           ))}
         </div>
       </section>

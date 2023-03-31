@@ -4,5 +4,5 @@ export interface SideBarProps {
   active: number;
   completed: number[];
   cookie: string;
-  handleOpen: () => void;
+  handleOpen: (val: boolean) => void;
 }

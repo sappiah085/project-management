@@ -6,7 +6,7 @@ import TabLike from "@/components/tabLike/tabLike";
 import { fetchData, getSession } from "@/utils/function";
 import { url } from "@/utils/urls";
 import Head from "next/head";
-import { useState } from "react";
+import {  useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { TbLoader } from "react-icons/tb";
 const months = [
@@ -42,6 +42,7 @@ export default function AdminDashboard({
 }) {
   const [active, setActive] = useState(0);
   const [load, setLoad] = useState(false);
+  const [filter, setFilter] = useState({ search: "", month: "" });
   const [studentArray, setStudents] = useState<student[]>(students);
   async function handleChangTab(id: number) {
     setLoad(true);
@@ -128,12 +129,22 @@ export default function AdminDashboard({
             ))}
           </div>
           <div className="flex items-center  gap-4 sticky top-16 z-30 bg-white py-1">
-            <SelectInput months={months} />
+            <SelectInput
+              setValue={(val: string) => setFilter((pre) => ({ ...pre, month: val }))}
+              value={filter.month}
+              months={months}
+            />
             <span className="flex items-center relative">
               <span className="absolute top-[50%] -translate-y-[50%] left-3 inline-block">
                 <FiSearch />
               </span>
-              <Input type="text" placeholder="Search" name="search" className="pl-11" />
+              <Input
+                onChange={(e: any) => setFilter((pre) => ({ ...pre, search: e.target.value }))}
+                type="text"
+                placeholder="Search"
+                name="search"
+                className="pl-11"
+              />
             </span>
           </div>
           <div className="w-full items-center justify-center sm:justify-start flex flex-wrap gap-2 ">

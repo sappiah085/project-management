@@ -31,7 +31,7 @@ export default function EnrollmentLayout({
           cookie={cookie}
           active={active}
           handleActive={handleActive}
-          handleOpen={() => setOpenNav((pre) => !pre)}
+          handleOpen={(val) => setOpenNav(val)}
           openNav={openNav}
         />
 
