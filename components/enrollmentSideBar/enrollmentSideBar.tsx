@@ -51,7 +51,7 @@ const EnrollmentSideBar: FC<SideBarProps> = ({
         ></div>
         <nav
           style={{
-            width: openNav ? "270px" : "0px",
+            width: openNav ? "100%" : "0px",
             padding: openNav ? "6rem 0.75rem" : "0px",
           }}
           className="flex lg:!pr-3 flex-col h-screen gap-3 fixed top-0 lg:!pt-24 bg-white transition-all  duration-300 overflow-hidden  z-50 lg:!w-[290px]"
