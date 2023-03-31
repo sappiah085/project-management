@@ -11,7 +11,7 @@ import Emergency from "@/components/emergencyInfo/emergency";
 import { dateFormat, fetchData, getSession } from "@/utils/function";
 import { url } from "@/utils/urls";
 import { useRouter } from "next/router";
-import { message } from "./message";
+import  message  from "../../../utils/message";
 export default function StudentInfo({
   id,
   cookie,
