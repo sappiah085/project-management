@@ -11,7 +11,6 @@ export default function Document() {
           rel="stylesheet"
         ></link>
         <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet" />
-        <title>realmann school |home for all</title>
       </Head>
       <body>
         <Main />
