@@ -5,19 +5,13 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         ></link>
-        <link
-          href="https://fonts.cdnfonts.com/css/gilroy-bold"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet" />
+        <title>realmann school |home for all</title>
       </Head>
       <body>
         <Main />
